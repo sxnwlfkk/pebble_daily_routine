@@ -26,21 +26,14 @@ int make_int_from_time(time_t timer_time) {
 
 // Show ritual_item_window //
 void ritual_item_window_show(){
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "After next_ritual_window_create.");
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 1 rem time %d", item_array[0].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 2 rem time %d", item_array[1].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 3 rem time %d", item_array[2].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 4 rem time %d", item_array[3].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Carry time %d", settings.carry_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Current item %d", settings.current_item);
   // Copy name string //
-  strncpy(item_name, current_item->name, sizeof(item_name));
+  strncpy(item_name, current_item.name, sizeof(item_name));
 
   // Copy time string. Can only be positive or zero //
-  if (current_item->remaining_time == 0) {
+  if (current_item.remaining_time == 0) {
     snprintf(item_time_string, sizeof(item_time_string), "0:00");
   } else {
-    snprintf(item_time_string, sizeof(item_time_string), "%d:%d", current_item->remaining_time/60, current_item->remaining_time%60);
+    snprintf(item_time_string, sizeof(item_time_string), "%d:%d", current_item.remaining_time/60, current_item.remaining_time%60);
   }
 
   // Copy carry_time string //
@@ -73,11 +66,11 @@ void ritual_item_window_show(){
 static void timer_handler(void *data) {
 
   // Countdown from remaining time //
-  if (current_item->remaining_time > 0) {
+  if (current_item.remaining_time > 0) {
 
-    current_item->remaining_time = (int)(current_item->timer_timestamp - time(NULL));
-    int minutes = current_item->remaining_time / 60;
-    int seconds = current_item->remaining_time % 60;
+    current_item.remaining_time = (int)(current_item.timer_timestamp - time(NULL));
+    int minutes = current_item.remaining_time / 60;
+    int seconds = current_item.remaining_time % 60;
     if (seconds < 10){
       snprintf(item_time_string, sizeof(item_time_string), "%d:0%d", minutes, seconds);
     } else {
@@ -87,13 +80,13 @@ static void timer_handler(void *data) {
     layer_mark_dirty(text_layer_get_layer(ritual_item_text_layer));
 
   // Setting up countdown from carry time //
-  } else if (current_item->remaining_time == 0 && current_item->pre_carry_stage) {
-      current_item->carry_timer_timestamp = make_time_from_int(settings.carry_time);
-      current_item->pre_carry_stage = false;
+  } else if (current_item.remaining_time == 0 && current_item.pre_carry_stage) {
+      current_item.carry_timer_timestamp = make_time_from_int(settings.carry_time);
+      current_item.pre_carry_stage = false;
 
   // Countdown from carry time //
   } else {
-    settings.carry_time = (int)(current_item->carry_timer_timestamp - time(NULL));
+    settings.carry_time = (int)(current_item.carry_timer_timestamp - time(NULL));
 
     if (settings.carry_time < 0) {
       int minutes = ((-1) * settings.carry_time) / 60;
@@ -114,7 +107,7 @@ static void timer_handler(void *data) {
     }
     layer_mark_dirty(text_layer_get_layer(ritual_carry_text_layer));
   }
-  if (current_item->remaining_time == 0) {
+  if (current_item.remaining_time == 0) {
     app_timer_register(0, timer_handler, data);
   } else {
   app_timer_register(1000, timer_handler, data);
@@ -149,8 +142,8 @@ void ritual_item_window_load(Window *window) {
   text_layer_set_text_alignment(ritual_carry_text_layer, GTextAlignmentCenter);
   layer_add_child(window_layer, text_layer_get_layer(ritual_carry_text_layer));
 
-  current_item->pre_carry_stage = true;
-  current_item->timer_timestamp = make_time_from_int(current_item->remaining_time);
+  current_item.pre_carry_stage = true;
+  current_item.timer_timestamp = make_time_from_int(current_item.remaining_time);
   app_timer_register(0, timer_handler, NULL);
 }
 

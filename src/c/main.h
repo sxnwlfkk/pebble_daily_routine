@@ -13,13 +13,14 @@ typedef struct Item {
 typedef struct Settings {
   int weekdays[7];
   int goal_time[2];
+  int item_keys[11];
   int routine_length;
   int carry_time;
   int current_item;
 } Settings;
 
 Settings settings;
-Item item_array[11];
-Item *current_item;
+// Item item_array[11];
+Item current_item;
 
 void load_state();
