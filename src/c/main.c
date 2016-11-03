@@ -10,6 +10,12 @@
 #define ITEMS_KEY 100
 #define ONE_DAY 86400
 
+// Forward declarations
+int main();
+void open_starting_window();
+static void init();
+void first_setup();
+
 // Settings //
 Settings settings = {
   .weekdays = {1, 1, 1, 1, 1, 0, 0},
@@ -17,6 +23,9 @@ Settings settings = {
   .carry_time = 0,
   .current_item = -1
 };
+
+static const Settings empty_settings;
+static const Item empty_item;
 
 // Items //
 char item_names[11][20] = {"Elso", "Masodik", "Harmadik",
@@ -27,6 +36,13 @@ int item_times[11] = {10, 200, 500, 400, 600, 150, 250, 350, 450, 50, 0};
 
 
 // Functions //
+
+void clear_data_variables() {
+  settings = empty_settings;
+  for (int i=0; i<11; i++) {
+    item_array[i] = empty_item;
+  }
+}
 
 /* Wrappers for reading/writing to/from memory. */
 void load_item_array() {
@@ -44,6 +60,11 @@ void load_curr_item(int key) {
 void save_state() {
   persist_write_data(SETTINGS_KEY, &settings, sizeof(settings));
   persist_write_data(ITEMS_KEY, &item_array, sizeof(item_array));
+}
+
+void load_state() {
+  persist_read_data(SETTINGS_KEY, &settings, sizeof(settings));
+  persist_read_data(ITEMS_KEY, &item_array, sizeof(item_array));
 }
 
 
@@ -89,10 +110,6 @@ void reset(void) {
   }
   settings.carry_time = 0;
   settings.current_item = -1;
-
-  persist_write_data(SETTINGS_KEY, &settings, sizeof(settings));
-  persist_write_data(ITEMS_KEY, &item_array, sizeof(item_array));
-
 }
 
 
@@ -122,15 +139,20 @@ static void deinit(void);
 static void start_window_down_click_handler(ClickRecognizerRef recognizer, void *context);
 static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *context);
 static void back_button_handler(ClickRecognizerRef recognizer, void *context);
+static void start_window_select_up_click_handler(ClickRecognizerRef recognizer, void *context);
+static void start_window_select_down_click_handler(ClickRecognizerRef recognizer, void *context);
 
 static void start_window_click_config_provider(void *context) {
   ButtonId id_down = BUTTON_ID_DOWN; // Down button
   ButtonId id_up = BUTTON_ID_UP; // Up button
   ButtonId id_back = BUTTON_ID_BACK; // Back button
+  ButtonId id_select = BUTTON_ID_SELECT; // Select button
+  uint16_t delay_ms = 1000;
 
   window_single_click_subscribe(id_down, start_window_down_click_handler);
   window_single_click_subscribe(id_up, start_window_up_click_handler);
   window_single_click_subscribe(id_back, back_button_handler);
+  window_long_click_subscribe(id_select, delay_ms, start_window_select_down_click_handler, start_window_select_up_click_handler);
 }
 
 
@@ -148,8 +170,19 @@ static void back_button_handler(ClickRecognizerRef recognizer, void *context) {
 
 static void end_window_back_button_handler(ClickRecognizerRef recognizer, void *context) {
   reset();
+  save_state();
 }
 
+static void start_window_select_down_click_handler(ClickRecognizerRef recognizer, void *context) {
+  return;
+}
+static void start_window_select_up_click_handler(ClickRecognizerRef recognizer, void *context) {
+  reset();
+  save_state();
+  // clear_data_variables();
+  init();
+  open_starting_window();
+}
 
 static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *context) {
   if (settings.current_item == 0)
@@ -250,6 +283,7 @@ static void init(void){
     persist_read_data(SETTINGS_KEY, &settings, sizeof(settings));
     persist_read_data(ITEMS_KEY, &item_array, sizeof(item_array));
     load_curr_item(0);
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "Current_item.time %d", current_item->time);
   } else {
     first_setup();
     persist_write_data(SETTINGS_KEY, &settings, sizeof(settings));
@@ -277,13 +311,7 @@ static void deinit(void){
   }
 }
 
-
-
-
-int main()
-{
-  init();
-
+void open_starting_window() {
   // If routine is not in progress //
   if (settings.current_item == -1) {
 
@@ -326,6 +354,14 @@ int main()
 
     ritual_item_window_show();
   }
+}
+
+
+int main()
+{
+  init();
+
+  open_starting_window();
 
   app_event_loop();
 
