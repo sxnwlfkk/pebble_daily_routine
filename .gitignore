@@ -1,3 +1,11 @@
+# User defined
+pebble.h
+
+# Pebble specific
+build
+build/*
+.lock-waf_linux2_build
+
 # Object files
 *.o
 *.ko
