@@ -182,13 +182,6 @@ static void start_window_select_up_click_handler(ClickRecognizerRef recognizer, 
   // clear_data_variables();
   init();
   open_starting_window();
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "After reset, save_state, init, open_starting_window.");
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 1 rem time %d", item_array[0].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 2 rem time %d", item_array[1].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 3 rem time %d", item_array[2].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 4 rem time %d", item_array[3].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Carry time %d", settings.carry_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Current item %d", settings.current_item);
 }
 
 static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -205,23 +198,16 @@ static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *c
 
 
 static void start_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "start_window_down_click before if tree.");
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 1 rem time %d", item_array[0].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 2 rem time %d", item_array[1].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 3 rem time %d", item_array[2].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 4 rem time %d", item_array[3].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Carry time %d", settings.carry_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Current item %d", settings.current_item);
-  
+
   // I don't know what causes this //
   if (current_item->remaining_time < 0 && settings.current_item == -1) {
     current_item->remaining_time = current_item->time;
-  } 
-  
+  }
+
   if (settings.carry_time < 0 && settings.current_item == -1) {
     settings.carry_time = 0;
   }
-  
+
   // If first run, calculate carry time //
   if (settings.current_item == -1) {
     // settings.carry_time = calculate_first_carry();
@@ -238,14 +224,7 @@ static void start_window_down_click_handler(ClickRecognizerRef recognizer, void 
     // Set remaining time in current item to 0, it will come in handy, if we go backwards
     current_item->remaining_time = 0;
   }
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "start_window_down_click before current_item++.");
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 1 rem time %d", item_array[0].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 2 rem time %d", item_array[1].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 3 rem time %d", item_array[2].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 4 rem time %d", item_array[3].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Carry time %d", settings.carry_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Current item %d", settings.current_item);
-  
+
   settings.current_item++;
   if (settings.current_item < 11) {
     load_curr_item(settings.current_item);
@@ -267,21 +246,14 @@ static void start_window_down_click_handler(ClickRecognizerRef recognizer, void 
 
 static void next_ritual_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
   load_state();
-  
+
   load_curr_item(0);
 
   ritual_start_window_create();
-  
+
   window_set_click_config_provider(ritual_startWindow, start_window_click_config_provider);
-  
+
   ritual_start_window_show();
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Next ritual window, after rit.start.window.show down button.");
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 1 rem time %d", item_array[0].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 2 rem time %d", item_array[1].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 3 rem time %d", item_array[2].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 4 rem time %d", item_array[3].remaining_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Carry time %d", settings.carry_time);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Current item %d", settings.current_item);
 }
 
 static void next_ritual_window_click_config_provider(void *context) {
@@ -329,8 +301,6 @@ static void init(void){
     } else {
       load_curr_item(settings.current_item);
     }
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "Init : current_item.remaining_time %d", current_item->remaining_time);
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "Init : settings.carry_time %d", settings.carry_time);
   } else {
     first_setup();
     persist_write_data(SETTINGS_KEY, &settings, sizeof(settings));
@@ -364,15 +334,8 @@ void open_starting_window() {
 
     // If next routine starts in more than five minutes //
     if (calculate_next_ritual() - 300 > time(NULL)) {
-      
+
       next_ritual_window_create();
-      APP_LOG(APP_LOG_LEVEL_DEBUG, "After next_ritual_window_create.");
-      APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 1 rem time %d", item_array[0].remaining_time);
-      APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 2 rem time %d", item_array[1].remaining_time);
-      APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 3 rem time %d", item_array[2].remaining_time);
-      APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 4 rem time %d", item_array[3].remaining_time);
-      APP_LOG(APP_LOG_LEVEL_DEBUG, "Carry time %d", settings.carry_time);
-      APP_LOG(APP_LOG_LEVEL_DEBUG, "Current item %d", settings.current_item);
 
       window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
       next_ritual_window_show(calculate_next_ritual());
