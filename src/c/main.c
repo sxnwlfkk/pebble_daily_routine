@@ -41,9 +41,9 @@ void load_curr_item(int key) {
   current_item = &item_array[key];
 }
 
-void write_everything() {
-  persist_write_data(ITEMS_KEY, &item_array, sizeof(item_array));
+void save_state() {
   persist_write_data(SETTINGS_KEY, &settings, sizeof(settings));
+  persist_write_data(ITEMS_KEY, &item_array, sizeof(item_array));
 }
 
 
@@ -260,10 +260,7 @@ static void init(void){
 
 
 static void deinit(void){
-
-  /* Write persistent data. */
-  persist_write_data(SETTINGS_KEY, &settings, sizeof(settings));
-  persist_write_data(ITEMS_KEY, &item_array, sizeof(item_array));
+  save_state();
 
   /* Close windows if opened. */
   if (window_is_loaded(nextRitualWindow)) {
