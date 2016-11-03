@@ -26,7 +26,13 @@ int make_int_from_time(time_t timer_time) {
 
 // Show ritual_item_window //
 void ritual_item_window_show(){
-
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "After next_ritual_window_create.");
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 1 rem time %d", item_array[0].remaining_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 2 rem time %d", item_array[1].remaining_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 3 rem time %d", item_array[2].remaining_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 4 rem time %d", item_array[3].remaining_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Carry time %d", settings.carry_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Current item %d", settings.current_item);
   // Copy name string //
   strncpy(item_name, current_item->name, sizeof(item_name));
 

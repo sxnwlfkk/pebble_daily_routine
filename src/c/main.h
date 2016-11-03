@@ -21,3 +21,5 @@ typedef struct Settings {
 Settings settings;
 Item item_array[11];
 Item *current_item;
+
+void load_state();

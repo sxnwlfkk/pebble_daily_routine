@@ -27,7 +27,7 @@ static void timer_handler(void *data) {
     snprintf(next_ritual_countdown_text, sizeof(next_ritual_countdown_text), "%d:%d", hours, minutes);
   }
   layer_mark_dirty(text_layer_get_layer(next_ritual_countdown_text_layer));
-  app_timer_register(30000, timer_handler, data);
+  app_timer_register(29000, timer_handler, data);
 }
 
 void next_ritual_window_show(time_t next_time){

@@ -10,13 +10,19 @@ char first_item_time_string[] = "00:00";
 void ritual_start_window_show(){
   strncpy(first_item_name, current_item->name, sizeof(first_item_name));
   int minutes = current_item->time / 60;
-  int seconds = current_item->time - (current_item->time/60)*60;
+  int seconds = current_item->time % 60;
   if (seconds < 10) {
     snprintf(first_item_time_string, sizeof(first_item_time_string), "%d:0%d", minutes, seconds);
   } else {
     snprintf(first_item_time_string, sizeof(first_item_time_string), "%d:%d", minutes, seconds);
   }
-  
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Ritual start window before stack_push.");
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 1 rem time %d", item_array[0].remaining_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 2 rem time %d", item_array[1].remaining_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 3 rem time %d", item_array[2].remaining_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Item 4 rem time %d", item_array[3].remaining_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Carry time %d", settings.carry_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Current item %d", settings.current_item);
   window_stack_push(ritual_start_window_get_window(), true);
 }
 
