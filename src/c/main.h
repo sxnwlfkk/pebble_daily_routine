@@ -1,4 +1,8 @@
+#pragma once
 #include <pebble.h>
+
+#define SETTINGS_KEY 99
+#define ONE_DAY 86400
 
 
 typedef struct Item {
@@ -10,6 +14,7 @@ typedef struct Item {
   time_t carry_timer_timestamp;
 } Item;
 
+
 typedef struct Settings {
   int weekdays[7];
   int goal_time[2];
@@ -20,7 +25,24 @@ typedef struct Settings {
 } Settings;
 
 Settings settings;
-// Item item_array[11];
 Item current_item;
+char item_names[11][20];
+int item_times[11];
 
-void load_state();
+
+ void open_starting_window();
+
+ void init();
+ void deinit();
+ void first_setup();
+ void setup();
+ void reset();
+
+
+ time_t calculate_next_ritual();
+ void distribute_carry_loss();
+
+ void write_curr_item(int key);
+ void load_curr_item(int key);
+ void save_state();
+ void load_state();
