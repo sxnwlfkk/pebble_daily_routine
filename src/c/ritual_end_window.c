@@ -4,7 +4,7 @@
 
 Window *ritual_endWindow;
 TextLayer *ritual_end_text_layer;
-char end_time[] = "00:00";
+char end_time[6] = "00:00 ";
 
 void ritual_end_window_show(char *user_end_time){
   strncpy(end_time, user_end_time, sizeof(end_time));

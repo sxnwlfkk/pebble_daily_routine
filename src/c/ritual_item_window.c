@@ -5,6 +5,8 @@
 Window *ritual_itemWindow;
 TextLayer *ritual_item_text_layer;
 TextLayer *ritual_carry_text_layer;
+int half_time;
+int fifth_time;
 char plus = 43;
 char item_name[30];
 char item_time_string[] = " 00:00 ";
@@ -26,6 +28,11 @@ int make_int_from_time(time_t timer_time) {
 
 // Show ritual_item_window //
 void ritual_item_window_show(){
+
+  // Count vibration times //
+  half_time = current_item.remaining_time / 2;
+  fifth_time = current_item.remaining_time / 5;
+
   // Copy name string //
   strncpy(item_name, current_item.name, sizeof(item_name));
 
@@ -56,7 +63,7 @@ void ritual_item_window_show(){
   }
 
   // Copy X/Y item string //
-  snprintf(item_out_of_max, sizeof(item_out_of_max), "[%d/%d]", settings.current_item+1, 11);
+  snprintf(item_out_of_max, sizeof(item_out_of_max), "[%d/%d]", settings.current_item+1, num_of_items);
 
   window_stack_push(ritual_item_window_get_window(), true);
 }
@@ -68,7 +75,14 @@ static void timer_handler(void *data) {
   // Countdown from remaining time //
   if (current_item.remaining_time > 0) {
 
-    current_item.remaining_time = (int)(current_item.timer_timestamp - time(NULL));
+    // Count and render time strings //
+    current_item.remaining_time = current_item.timer_timestamp - time(NULL);
+
+    // Vibrate //
+    if (current_item.remaining_time == half_time || current_item.remaining_time == fifth_time) {
+      vibes_double_pulse();
+    }
+
     int minutes = current_item.remaining_time / 60;
     int seconds = current_item.remaining_time % 60;
     if (seconds < 10){
@@ -81,12 +95,17 @@ static void timer_handler(void *data) {
 
   // Setting up countdown from carry time //
   } else if (current_item.remaining_time == 0 && current_item.pre_carry_stage) {
+      vibes_double_pulse();
       current_item.carry_timer_timestamp = make_time_from_int(settings.carry_time);
       current_item.pre_carry_stage = false;
 
   // Countdown from carry time //
   } else {
     settings.carry_time = (int)(current_item.carry_timer_timestamp - time(NULL));
+
+    if (settings.carry_time == 0) {
+      vibes_double_pulse();
+    }
 
     if (settings.carry_time < 0) {
       int minutes = ((-1) * settings.carry_time) / 60;

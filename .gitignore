@@ -1,5 +1,5 @@
 # User defined
-pebble.h
+own_routines.c
 
 # Pebble specific
 build
