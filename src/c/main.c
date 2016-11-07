@@ -12,7 +12,7 @@
 Settings settings = {
   .weekdays = {1, 1, 1, 1, 1, 0, 0},
   .goal_time = {7,30},
-  .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112},
+  .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113},
   .carry_time = 0,
   .current_item = -1
 };
@@ -22,9 +22,11 @@ Settings settings = {
 char item_names[num_of_items][30] = {"First", "Second", "Third",
                            "Fourth", "Fifth", "Sixth",
                            "Seventh", "Eighth", "Ninth",
-                           "Tenth", "Eleventh", "Twelfth", "Freetime"};
-int item_times[num_of_items] = {10, 200, 500, 400, 600, 150, 250, 350, 450, 50, 0};
+                           "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Freetime"};
+int item_times[num_of_items] = {10, 200, 500, 400, 600, 150, 250, 350, 450, 50, 13, 0};
 Item current_item;
+
+
 
 // Functions //
 
@@ -43,21 +45,6 @@ Item current_item;
  void load_state() {
   persist_read_data(SETTINGS_KEY, &settings, sizeof(settings));
 }
-
-
-// Time string formatting //
-// char make_into_time(int *first, int *second) {
-//   char time_s[] = "00:00";
-//   // Second is lessen than 10 //
-//   if (*second < 10) {
-//       snprintf(time_s, sizeof(time_s), "%d:0%d", *first, *second);
-//
-//   // Second is greater than 10 //
-//   } else {
-//       snprintf(time_s, sizeof(time_s), "%d:%d", *first, *second);
-//   }
-//   return time_s;
-// }
 
 
 /* Calculates the next occurence of morning routine. */
@@ -126,7 +113,7 @@ int abs(int val) {
 
 /* Calculates how much earlier of late the routine is started. */
  int calculate_first_carry() {
-  int carry = (int)(calculate_next_ritual() - time(NULL));
+  int carry = (int)(calculate_next_ritual() - time(NULL)) - settings.routine_length;
   return carry;
 }
 
@@ -170,20 +157,6 @@ int abs(int val) {
     first_setup();
     save_state();
   }
-
-// Commented for possible later use with wakeups //
-// Don't forget to uncomment include if you want to use it //
-  // check_next_start_time();
-  //
-  // if (launch_reason() == APP_LAUNCH_WAKEUP) {
-  //     WakeupId w_id = 0;
-  //     int32_t w_reason = 0;
-  //     if (wakeup_get_launch_event(&w_id, &w_reason)) {
-  //       wakeup_handler(w_id, w_reason);
-  //     }
-  // }
-  //
-  // wakeup_service_subscribe(wakeup_handler);
 }
 
 
@@ -215,11 +188,13 @@ int abs(int val) {
 
       next_ritual_window_create();
       window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
-      next_ritual_window_show(calculate_next_ritual());
+      next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
     // If next routine starts in less than five minutes //
     } else {
+      load_curr_item(settings.item_keys[0]);
+
       ritual_start_window_create();
-      window_set_click_config_provider(nextRitualWindow, start_window_click_config_provider);
+      window_set_click_config_provider(ritual_startWindow, start_window_click_config_provider);
       ritual_start_window_show();
     }
 

@@ -12,6 +12,7 @@ char item_name[30];
 char item_time_string[] = " 00:00 ";
 char carry_time_string[] = " 00:00 ";
 char item_out_of_max[] = "[00/00]";
+bool vibrated = false;
 
 
 // Time functions //
@@ -79,8 +80,13 @@ static void timer_handler(void *data) {
     current_item.remaining_time = current_item.timer_timestamp - time(NULL);
 
     // Vibrate //
-    if (current_item.remaining_time == half_time || current_item.remaining_time == fifth_time) {
+    if ((current_item.remaining_time == half_time || current_item.remaining_time == fifth_time) &&
+          !vibrated) {
       vibes_double_pulse();
+      vibrated = true;
+    }
+    if (current_item.remaining_time == half_time-2 || current_item.remaining_time == fifth_time-2) {
+      vibrated = false;
     }
 
     int minutes = current_item.remaining_time / 60;
@@ -172,12 +178,18 @@ void ritual_item_window_unload(Window *window) {
   ritual_itemWindow = NULL;
 }
 
+void ritual_item_window_disappear(Window *window) {
+  save_state();
+  write_curr_item(settings.item_keys[settings.current_item]);
+}
+
 
 void ritual_item_window_create() {
   ritual_itemWindow = window_create();
   window_set_window_handlers(ritual_itemWindow, (WindowHandlers){
     .load = ritual_item_window_load,
     .unload = ritual_item_window_unload,
+    .disappear = ritual_item_window_disappear
   });
 }
 

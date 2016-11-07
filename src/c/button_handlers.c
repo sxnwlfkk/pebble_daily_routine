@@ -201,9 +201,7 @@ static void next_ritual_window_down_click_handler(ClickRecognizerRef recognizer,
   load_curr_item(settings.item_keys[0]);
 
   ritual_start_window_create();
-
   window_set_click_config_provider(ritual_startWindow, start_window_click_config_provider);
-
   ritual_start_window_show();
 }
 

@@ -8,7 +8,7 @@ TextLayer *ritual_start_text_layer;
 char first_item_name[30];
 char first_item_time_string[] = "00:00";
 
-void ritual_start_window_show(){
+void ritual_start_window_show() {
   strncpy(first_item_name, current_item.name, sizeof(first_item_name));
 
   int minutes = current_item.time / 60;

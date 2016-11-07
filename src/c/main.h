@@ -12,7 +12,7 @@
 #define WK_KEY6 95
 #define WK_KEY7 96
 #define WK_KEY8 97
-#define num_of_items 13
+#define num_of_items 14
 
 
 typedef struct Item {

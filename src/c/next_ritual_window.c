@@ -13,13 +13,24 @@ char r_len[9] = "000:000";
 static void timer_handler(void *data) {
 
   int countdown = wakeup_timestamp - time(NULL);
-  int hours = countdown/60/60;
-  int minutes = countdown/60 - hours*60;
-  if (minutes < 10){
-    snprintf(next_ritual_countdown_text, sizeof(next_ritual_countdown_text), "%d:0%d", hours, minutes);
+  if (countdown < 0) {
+    int hours = (-1)*countdown/60/60;
+    int minutes = (-1)*countdown/60 - hours*60;
+    if (minutes < 10){
+      snprintf(next_ritual_countdown_text, sizeof(next_ritual_countdown_text), "-%d:0%d", hours, minutes);
+    } else {
+      snprintf(next_ritual_countdown_text, sizeof(next_ritual_countdown_text), "-%d:%d", hours, minutes);
+    }
   } else {
-    snprintf(next_ritual_countdown_text, sizeof(next_ritual_countdown_text), "%d:%d", hours, minutes);
+    int hours = countdown/60/60;
+    int minutes = countdown/60 - hours*60;
+    if (minutes < 10){
+      snprintf(next_ritual_countdown_text, sizeof(next_ritual_countdown_text), "%d:0%d", hours, minutes);
+    } else {
+      snprintf(next_ritual_countdown_text, sizeof(next_ritual_countdown_text), "%d:%d", hours, minutes);
+    }
   }
+
   layer_mark_dirty(text_layer_get_layer(next_ritual_countdown_text_layer));
   app_timer_register(29000, timer_handler, data);
 }
@@ -29,7 +40,7 @@ void next_ritual_window_show(time_t next_time){
 
   int start_time = settings.goal_time[0]*60*60 + settings.goal_time[1]*60 - settings.routine_length;
   int hours =  start_time/60/60;
-  int minutes = (settings.routine_length/60)%60;
+  int minutes = (start_time/60)%60;
   if (minutes < 10) {
     snprintf(r_len, sizeof(r_len), "%d:0%d", hours, minutes);
   } else {
