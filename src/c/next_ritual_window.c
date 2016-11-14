@@ -55,6 +55,7 @@ void next_ritual_window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
 
   nextRitualText = text_layer_create(GRect(0, 0, 144, 95));
+  // text_layer_set_text(nextRitualText, "Next evening routine starts in:");
   text_layer_set_text(nextRitualText, "Next morning routine starts in:");
   text_layer_set_font(nextRitualText, fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD));
   text_layer_set_text_alignment(nextRitualText, GTextAlignmentCenter);

@@ -27,6 +27,7 @@ static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *c
   }
 
   settings.carry_time = 0;
+  settings.finish_time = time(NULL) + settings.routine_length;
 
   settings.current_item++;
   load_curr_item(settings.item_keys[settings.current_item]);
@@ -50,6 +51,9 @@ static void start_window_down_click_handler(ClickRecognizerRef recognizer, void 
   }
 
   settings.carry_time = calculate_first_carry();
+  settings.finish_time = time_start_of_today() +
+                             settings.goal_time[0]*60 +
+                             settings.goal_time[1]*60*60;
 
   if (settings.carry_time < 0)
     distribute_carry_loss();
@@ -158,19 +162,7 @@ static void item_window_down_click_handler(ClickRecognizerRef recognizer, void *
    // Set up end window, reset all progress data
     ritual_end_window_create();
     window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
-    char time_s[6] = "00:00 ";
-
-    int hours = settings.goal_time[0];
-    int minutes = settings.goal_time[1];
-    if (minutes < 10) {
-      snprintf(time_s, sizeof(time_s), "%i:0%i", hours, minutes);
-
-    // Second is greater than 10 //
-    } else {
-      snprintf(time_s, sizeof(time_s), "%i:%i", hours, minutes);
-    }
-
-    ritual_end_window_show(time_s);
+    ritual_end_window_show();
   }
 
 }

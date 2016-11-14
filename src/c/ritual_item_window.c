@@ -1,5 +1,7 @@
 #include <pebble.h>
 #include "ritual_item_window.h"
+#include "ritual_end_window.h"
+#include "button_handlers.h"
 #include "main.h"
 
 Window *ritual_itemWindow;
@@ -113,6 +115,11 @@ static void timer_handler(void *data) {
       vibes_double_pulse();
     }
 
+    if (settings.carry_time == 0 && !vibrated) {
+      vibes_double_pulse();
+      vibrated = true;
+    }
+
     if (settings.carry_time < 0) {
       int minutes = ((-1) * settings.carry_time) / 60;
       int seconds = ((-1) * settings.carry_time) % 60;
@@ -167,6 +174,7 @@ void ritual_item_window_load(Window *window) {
   text_layer_set_text_alignment(ritual_carry_text_layer, GTextAlignmentCenter);
   layer_add_child(window_layer, text_layer_get_layer(ritual_carry_text_layer));
 
+  vibrated = false;
   current_item.pre_carry_stage = true;
   current_item.timer_timestamp = make_time_from_int(current_item.remaining_time);
   app_timer_register(0, timer_handler, NULL);

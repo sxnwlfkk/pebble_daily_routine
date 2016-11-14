@@ -4,10 +4,21 @@
 
 Window *ritual_endWindow;
 TextLayer *ritual_end_text_layer;
-char end_time[6] = "00:00 ";
+char * end_time = "00:00 ";
 
-void ritual_end_window_show(char *user_end_time){
-  strncpy(end_time, user_end_time, sizeof(end_time));
+void ritual_end_window_show(){
+
+  int hours = (time(NULL) - time_start_of_today()) / 60 / 60;
+  int minutes = ((time(NULL) - time_start_of_today()) / 60) % 60;
+
+  if (minutes < 10) {
+    snprintf(end_time, sizeof("00:00 "), "%i:0%i", hours, minutes);
+
+  // Second is greater than 10 //
+  } else {
+    snprintf(end_time, sizeof("00:00 "), "%i:%i", hours, minutes);
+  }
+
   window_stack_push(ritual_end_window_get_window(), true);
 }
 

@@ -4,4 +4,4 @@ void ritual_end_window_create();
 void ritual_end_window_destroy();
 Window *ritual_end_window_get_window();
 Window *ritual_endWindow;
-void ritual_end_window_show(char *user_end_time);
+void ritual_end_window_show();

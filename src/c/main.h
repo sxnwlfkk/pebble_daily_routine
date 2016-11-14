@@ -12,7 +12,7 @@
 #define WK_KEY6 95
 #define WK_KEY7 96
 #define WK_KEY8 97
-#define num_of_items 14
+#define num_of_items 15
 
 
 typedef struct Item {
@@ -32,6 +32,8 @@ typedef struct Settings {
   int routine_length;
   int carry_time;
   int current_item;
+  bool on_time;
+  time_t finish_time;
 } Settings;
 
 Settings settings;

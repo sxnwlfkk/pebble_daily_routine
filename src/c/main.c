@@ -11,10 +11,11 @@
 // Settings //
 Settings settings = {
   .weekdays = {1, 1, 1, 1, 1, 0, 0},
-  .goal_time = {7,30},
-  .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113},
+  .goal_time = {22,20},
+  .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114},
   .carry_time = 0,
-  .current_item = -1
+  .current_item = -1,
+  // .on_time = false;
 };
 
 
@@ -22,10 +23,9 @@ Settings settings = {
 char item_names[num_of_items][30] = {"First", "Second", "Third",
                            "Fourth", "Fifth", "Sixth",
                            "Seventh", "Eighth", "Ninth",
-                           "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Freetime"};
-int item_times[num_of_items] = {10, 200, 500, 400, 600, 150, 250, 350, 450, 50, 13, 0};
+                           "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth" "Freetime"};
+int item_times[num_of_items] = {10, 200, 500, 400, 600, 150, 250, 350, 450, 50, 13, 55, 0};
 Item current_item;
-
 
 
 // Functions //
