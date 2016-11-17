@@ -85,6 +85,7 @@ static void timer_handler(void *data) {
     if ((current_item.remaining_time == half_time || current_item.remaining_time == fifth_time) &&
           !vibrated) {
       vibes_double_pulse();
+      light_enable_interaction();
       vibrated = true;
     }
     if (current_item.remaining_time == half_time-2 || current_item.remaining_time == fifth_time-2) {
@@ -104,6 +105,7 @@ static void timer_handler(void *data) {
   // Setting up countdown from carry time //
   } else if (current_item.remaining_time == 0 && current_item.pre_carry_stage) {
       vibes_double_pulse();
+      light_enable_interaction();
       current_item.carry_timer_timestamp = make_time_from_int(settings.carry_time);
       current_item.pre_carry_stage = false;
 
@@ -111,12 +113,9 @@ static void timer_handler(void *data) {
   } else {
     settings.carry_time = (int)(current_item.carry_timer_timestamp - time(NULL));
 
-    if (settings.carry_time == 0) {
-      vibes_double_pulse();
-    }
-
     if (settings.carry_time == 0 && !vibrated) {
       vibes_double_pulse();
+      light_enable_interaction();
       vibrated = true;
     }
 
