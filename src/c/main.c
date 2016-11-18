@@ -15,7 +15,6 @@ Settings settings = {
   .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114},
   .carry_time = 0,
   .current_item = -1,
-  // .on_time = false;
 };
 
 
@@ -26,6 +25,18 @@ char item_names[num_of_items][30] = {"First", "Second", "Third",
                            "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth" "Freetime"};
 int item_times[num_of_items] = {10, 200, 500, 400, 600, 150, 250, 350, 450, 50, 13, 55, 0};
 Item current_item;
+
+
+// Logging //
+
+void log_settings_dump() {
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "The settings contains:");
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.goal_time = %d:%d", settings.goal_time[0], settings.goal_time[1]);
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.carry_time = %d", settings.carry_time);
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.current_item = %d", settings.current_item);
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.current_item = %d", settings.current_item);
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.routine_length = %d", settings.routine_length);
+}
 
 
 // Functions //
@@ -172,6 +183,7 @@ int abs(int val) {
 
   wakeup_service_subscribe(wakeup_handler);
   wu_check_next_start_time();
+  log_settings_dump();
 
 }
 
