@@ -78,8 +78,9 @@ void wu_check_next_start_time() {
   if (persist_exists(WK_KEY1)) {
     int w_id = persist_read_int(WK_KEY1);
     time_t wk_time;
+    log_formatted_time(wk_time);
     if (!wakeup_query(w_id, &wk_time)) {
-      schedule_wakeup(WK_KEY1, (time_t)calculate_next_ritual(), -90, 1); // Needs - settings.routine_length
+      schedule_wakeup(WK_KEY1, (time_t)(calculate_next_ritual() - settings.routine_length), -90, 1); // Needs - settings.routine_length
     } else {
       char wk_time_str[40];
       strftime(wk_time_str, sizeof(char[40]), "%a %D, %H:%m", gmtime(&wk_time));

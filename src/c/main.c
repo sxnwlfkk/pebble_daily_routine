@@ -11,7 +11,7 @@
 // Settings //
 Settings settings = {
   .weekdays = {1, 1, 1, 1, 1, 0, 0},
-  .goal_time = {16,20},
+  .goal_time = {15,55},
   .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114},
   .carry_time = 0,
   .current_item = -1,
@@ -36,6 +36,12 @@ void log_settings_dump() {
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.current_item = %d", settings.current_item);
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.current_item = %d", settings.current_item);
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.routine_length = %d", settings.routine_length);
+}
+
+void log_formatted_time(time_t time_utc) {
+  char wk_time_str[40];
+  strftime(wk_time_str, sizeof(char[40]), "%a %D, %H:%m", gmtime(&time_utc));
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "wu_check_next_start_time: scheduled time: %s", wk_time_str);
 }
 
 

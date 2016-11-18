@@ -42,21 +42,27 @@ char item_names[num_of_items][30];
 int item_times[num_of_items];
 
 
- void open_starting_window();
+void open_starting_window();
 
- void init();
- void deinit();
- void first_setup();
- void setup();
- void reset();
+void init();
+void deinit();
+void first_setup();
+void setup();
+void reset();
 
 
- time_t calculate_next_ritual();
- void distribute_carry_loss();
- int calculate_first_carry();
+time_t calculate_next_ritual();
+void distribute_carry_loss();
+int calculate_first_carry();
 
 char make_into_time(int *first, int *second);
- void write_curr_item(int key);
- void load_curr_item(int key);
- void save_state();
- void load_state();
+void write_curr_item(int key);
+void load_curr_item(int key);
+void save_state();
+void load_state();
+
+
+ // Logging //
+
+void log_settings_dump();
+void log_formatted_time(time_t time_utc);
