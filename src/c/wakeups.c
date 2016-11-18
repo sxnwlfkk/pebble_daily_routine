@@ -46,7 +46,6 @@ void wakeup_handler(WakeupId id, int32_t reason) {
 //////////////////////////////
 
 void schedule_wakeup(int key, time_t w_time, int offset, int reason) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "schedule_wakeup: start");
   time_t wakeup_timestamp = w_time + offset;
   int high = offset + 90;
   int low = offset - 90;
@@ -75,18 +74,38 @@ void schedule_wakeup(int key, time_t w_time, int offset, int reason) {
 ////////////////////////////////////////////////////////
 
 void wu_check_next_start_time() {
+
+  time_t next_time = calculate_next_ritual() - settings.routine_length;
+  if (time(NULL) > next_time)
+    next_time += ONE_DAY;
+
   if (persist_exists(WK_KEY1)) {
+    // There is a record set, check if valid //
+
     int w_id = persist_read_int(WK_KEY1);
     time_t wk_time;
-    log_formatted_time(wk_time);
+
     if (!wakeup_query(w_id, &wk_time)) {
-      schedule_wakeup(WK_KEY1, (time_t)(calculate_next_ritual() - settings.routine_length), -90, 1); // Needs - settings.routine_length
+      // Previously scheduled but not valid //
+      schedule_wakeup(WK_KEY1, next_time, -90, 1);
+
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Previous wakeup isn't valid, scheduling a new one:");
+      log_formatted_time(wk_time);
     } else {
-      char wk_time_str[40];
-      strftime(wk_time_str, sizeof(char[40]), "%a %D, %H:%m", gmtime(&wk_time));
-      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "wu_check_next_start_time: scheduled time: %s", wk_time_str);
+      // Scheduled and valid, just log it. //
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Previous wakeup time scheduled and valid:");
+      log_formatted_time(wk_time);
     }
   } else {
-      schedule_wakeup(WK_KEY1, (time_t)(calculate_next_ritual() - settings.routine_length), -90, 1);
+      // Not scheduled, first run //
+      schedule_wakeup(WK_KEY1, next_time, -90, 1);
+
+      // Logging //
+      int w_id = persist_read_int(WK_KEY1);
+      time_t wk_time;
+
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Scheduling wakeup time first. It'll be at:");
+      wakeup_query(w_id, &wk_time);
+      log_formatted_time(wk_time);
   }
 }

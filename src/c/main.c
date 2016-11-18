@@ -32,6 +32,11 @@ Item current_item;
 void log_settings_dump() {
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "The settings contains:");
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.goal_time = %d:%d", settings.goal_time[0], settings.goal_time[1]);
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Start time should be:");
+  time_t next_routine_start = calculate_next_ritual() - settings.routine_length;
+  if (time(NULL) > next_routine_start)
+    next_routine_start += ONE_DAY;
+  log_formatted_time(next_routine_start);
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.carry_time = %d", settings.carry_time);
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.current_item = %d", settings.current_item);
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.current_item = %d", settings.current_item);
@@ -41,7 +46,7 @@ void log_settings_dump() {
 void log_formatted_time(time_t time_utc) {
   char wk_time_str[40];
   strftime(wk_time_str, sizeof(char[40]), "%a %D, %H:%m", gmtime(&time_utc));
-  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "wu_check_next_start_time: scheduled time: %s", wk_time_str);
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "%s", wk_time_str);
 }
 
 
