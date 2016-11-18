@@ -86,6 +86,6 @@ void wu_check_next_start_time() {
       APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "wu_check_next_start_time: scheduled time: %s", wk_time_str);
     }
   } else {
-      schedule_wakeup(WK_KEY1, (time_t)calculate_next_ritual(), -90, 1); // Needs - settings.routine_length
+      schedule_wakeup(WK_KEY1, (time_t)(calculate_next_ritual() - settings.routine_length), -90, 1);
   }
 }

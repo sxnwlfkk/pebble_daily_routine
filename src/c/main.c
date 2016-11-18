@@ -11,7 +11,7 @@
 // Settings //
 Settings settings = {
   .weekdays = {1, 1, 1, 1, 1, 0, 0},
-  .goal_time = {14,10},
+  .goal_time = {16,20},
   .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114},
   .carry_time = 0,
   .current_item = -1,
