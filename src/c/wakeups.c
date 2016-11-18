@@ -20,17 +20,22 @@ int expon(int x, int y) {
 ////////////////////
 
 void wakeup_handler(WakeupId id, int32_t reason) {
-
-  // Wakeup due to next ritual //
-  if (reason == 1) {
+  if (reason == 1 && settings.current_item == -1) {
+    // Wakeup due to next ritual, and ritual isn't started //
     vibes_double_pulse();
     light_enable_interaction();
 
     next_ritual_window_create();
     window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
     next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
-  // Wakeup due to end times //
+    
+  } else if (reason == 1) {
+    // Wakeup due to next ritual, but the ritual is started //
+    vibes_double_pulse();
+    light_enable_interaction();
+
   } else if (reason == 2) {
+    // Wakeup due to end times //
     vibes_double_pulse();
     light_enable_interaction();
 
