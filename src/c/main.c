@@ -4,7 +4,7 @@
 #include "ritual_end_window.h"
 #include "ritual_item_window.h"
 #include "button_handlers.h"
-// #include "wakeups.h"
+#include "wakeups.h"
 #include "main.h"
 
 

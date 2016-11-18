@@ -36,7 +36,7 @@ void wakeup_handler(WakeupId id, int32_t reason) {
 
     ritual_end_window_create();
     window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
-    ritual_end_window_show(time_s);
+    ritual_end_window_show();
   }
 }
 
