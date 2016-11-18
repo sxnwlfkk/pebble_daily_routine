@@ -46,6 +46,7 @@ void wakeup_handler(WakeupId id, int32_t reason) {
 //////////////////////////////
 
 void schedule_wakeup(int key, time_t w_time, int offset, int reason) {
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "schedule_wakeup: start");
   time_t wakeup_timestamp = w_time + offset;
   int high = offset + 90;
   int low = offset - 90;
@@ -73,11 +74,18 @@ void schedule_wakeup(int key, time_t w_time, int offset, int reason) {
 // Check next_ritual time, and schedule it if not set //
 ////////////////////////////////////////////////////////
 
-void check_next_start_time() {
+void wu_check_next_start_time() {
   if (persist_exists(WK_KEY1)) {
     int w_id = persist_read_int(WK_KEY1);
-    if (!wakeup_query(w_id, NULL)) {
+    time_t wk_time;
+    if (!wakeup_query(w_id, &wk_time)) {
       schedule_wakeup(WK_KEY1, (time_t)calculate_next_ritual(), -90, 1); // Needs - settings.routine_length
+    } else {
+      char wk_time_str[40];
+      strftime(wk_time_str, sizeof(char[40]), "%a %D, %H:%m", gmtime(&wk_time));
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "wu_check_next_start_time: scheduled time: %s", wk_time_str);
     }
+  } else {
+      schedule_wakeup(WK_KEY1, (time_t)calculate_next_ritual(), -90, 1); // Needs - settings.routine_length
   }
 }

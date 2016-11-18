@@ -11,7 +11,7 @@
 // Settings //
 Settings settings = {
   .weekdays = {1, 1, 1, 1, 1, 0, 0},
-  .goal_time = {22,20},
+  .goal_time = {14,10},
   .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114},
   .carry_time = 0,
   .current_item = -1,
@@ -160,7 +160,7 @@ int abs(int val) {
 
   // Wakueup handling //
 
-  if(launch_reason() == APP_LAUNCH_WAKEUP) {
+  if (launch_reason() == APP_LAUNCH_WAKEUP) {
     // The app was started by a wakeup event.
     WakeupId id = 0;
     int32_t reason = 0;
@@ -171,7 +171,7 @@ int abs(int val) {
   }
 
   wakeup_service_subscribe(wakeup_handler);
-  check_next_start_time();
+  wu_check_next_start_time();
 
 }
 
