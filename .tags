@@ -1,0 +1,341 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Simple program for pebble, containing my daily rituals	/home/cs/mysrc/pebble-daily-routine/TODO.md	/^# Simple program for pebble, containing my daily rituals$/;"	function	line:1
+Should be able to do:	/home/cs/mysrc/pebble-daily-routine/TODO.md	/^### Should be able to do:$/;"	function	line:3
+Policy	/home/cs/mysrc/pebble-daily-routine/TODO.md	/^### Policy$/;"	function	line:10
+Mechanism / logic	/home/cs/mysrc/pebble-daily-routine/TODO.md	/^### Mechanism \/ logic$/;"	function	line:19
+author	/home/cs/mysrc/pebble-daily-routine/package.json	/^    "author": "sxnwlfkk",$/;"	function	line:2
+dependencies	/home/cs/mysrc/pebble-daily-routine/package.json	/^    "dependencies": {},$/;"	function	line:3
+keywords	/home/cs/mysrc/pebble-daily-routine/package.json	/^    "keywords": [],$/;"	function	line:4
+name	/home/cs/mysrc/pebble-daily-routine/package.json	/^    "name": "Daily Routine",$/;"	function	line:5
+pebble	/home/cs/mysrc/pebble-daily-routine/package.json	/^    "pebble": {$/;"	function	line:6
+displayName	/home/cs/mysrc/pebble-daily-routine/package.json	/^        "displayName": "Daily Routine Test",$/;"	function	line:7
+enableMultiJS	/home/cs/mysrc/pebble-daily-routine/package.json	/^        "enableMultiJS": true,$/;"	function	line:8
+messageKeys	/home/cs/mysrc/pebble-daily-routine/package.json	/^        "messageKeys": [],$/;"	function	line:9
+projectType	/home/cs/mysrc/pebble-daily-routine/package.json	/^        "projectType": "native",$/;"	function	line:10
+resources	/home/cs/mysrc/pebble-daily-routine/package.json	/^        "resources": {$/;"	function	line:11
+media	/home/cs/mysrc/pebble-daily-routine/package.json	/^            "media": []$/;"	function	line:12
+sdkVersion	/home/cs/mysrc/pebble-daily-routine/package.json	/^        "sdkVersion": "3",$/;"	function	line:14
+targetPlatforms	/home/cs/mysrc/pebble-daily-routine/package.json	/^        "targetPlatforms": [$/;"	function	line:15
+uuid	/home/cs/mysrc/pebble-daily-routine/package.json	/^        "uuid": "6a233b0f-6a3b-49a7-8c4d-d98ce1eb235b",$/;"	function	line:19
+watchapp	/home/cs/mysrc/pebble-daily-routine/package.json	/^        "watchapp": {$/;"	function	line:20
+watchface	/home/cs/mysrc/pebble-daily-routine/package.json	/^            "watchface": false$/;"	function	line:21
+version	/home/cs/mysrc/pebble-daily-routine/package.json	/^    "version": "0.2.0"$/;"	function	line:24
+__pbl_app_info	/home/cs/mysrc/pebble-daily-routine/build/basalt/appinfo.auto.c	/^const PebbleProcessInfo __pbl_app_info __attribute__ ((section (".pbl_header"))) = {$/;"	variable	line:4
+DEFAULT_MENU_ICON	/home/cs/mysrc/pebble-daily-routine/build/basalt/src/resource_ids.auto.h	/^#define  DEFAULT_MENU_ICON /;"	macro	line:8
+AR	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^AR = 'arm-none-eabi-ar'$/;"	variable	line:1
+ARFLAGS	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^ARFLAGS = 'rcs'$/;"	variable	line:2
+AS	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^AS = 'arm-none-eabi-gcc'$/;"	variable	line:3
+BINDIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^BINDIR = '\/usr\/local\/bin'$/;"	variable	line:4
+BLOCK_MESSAGE_KEYS	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^BLOCK_MESSAGE_KEYS = []$/;"	variable	line:5
+BUILD_DIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^BUILD_DIR = 'aplite'$/;"	variable	line:6
+BUILD_TYPE	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^BUILD_TYPE = 'app'$/;"	variable	line:7
+BUNDLE_BIN_DIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^BUNDLE_BIN_DIR = 'aplite'$/;"	variable	line:8
+BUNDLE_NAME	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^BUNDLE_NAME = 'pebble-daily-routine.pbw'$/;"	variable	line:9
+CC	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^CC = ['arm-none-eabi-gcc']$/;"	variable	line:10
+CCLNK_SRC_F	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^CCLNK_SRC_F = []$/;"	variable	line:11
+CCLNK_TGT_F	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^CCLNK_TGT_F = ['-o']$/;"	variable	line:12
+CC_NAME	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^CC_NAME = 'gcc'$/;"	variable	line:13
+CC_SRC_F	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^CC_SRC_F = []$/;"	variable	line:14
+CC_TGT_F	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^CC_TGT_F = ['-c', '-o']$/;"	variable	line:15
+CC_VERSION	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^CC_VERSION = ('4', '7', '2')$/;"	variable	line:16
+CFLAGS_MACBUNDLE	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^CFLAGS_MACBUNDLE = ['-fPIC']$/;"	variable	line:18
+CFLAGS_cshlib	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^CFLAGS_cshlib = ['-fPIC']$/;"	variable	line:19
+CPPPATH_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^CPPPATH_ST = '-I%s'$/;"	variable	line:20
+DEFINES_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^DEFINES_ST = '-D%s'$/;"	variable	line:22
+DEST_BINFMT	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^DEST_BINFMT = 'elf'$/;"	variable	line:23
+DEST_CPU	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^DEST_CPU = 'arm'$/;"	variable	line:24
+DEST_OS	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^DEST_OS = 'linux'$/;"	variable	line:25
+INCLUDES	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^INCLUDES = ['aplite']$/;"	variable	line:26
+LD	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^LD = 'arm-none-eabi-ld'$/;"	variable	line:27
+LIBDIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^LIBDIR = '\/usr\/local\/lib'$/;"	variable	line:28
+LIBPATH_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^LIBPATH_ST = '-L%s'$/;"	variable	line:29
+LIB_DIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^LIB_DIR = 'node_modules'$/;"	variable	line:30
+LIB_JSON	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^LIB_JSON = []$/;"	variable	line:31
+LIB_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^LIB_ST = '-l%s'$/;"	variable	line:32
+LINKFLAGS_MACBUNDLE	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^LINKFLAGS_MACBUNDLE = ['-bundle', '-undefined', 'dynamic_lookup']$/;"	variable	line:34
+LINKFLAGS_cshlib	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^LINKFLAGS_cshlib = ['-shared']$/;"	variable	line:35
+LINKFLAGS_cstlib	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^LINKFLAGS_cstlib = ['-Wl,-Bstatic']$/;"	variable	line:36
+LINK_CC	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^LINK_CC = ['arm-none-eabi-gcc']$/;"	variable	line:37
+MESSAGE_KEYS	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^MESSAGE_KEYS = {}$/;"	variable	line:38
+MESSAGE_KEYS_HEADER	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^MESSAGE_KEYS_HEADER = '\/home\/cs\/mysrc\/pebble-daily-routine\/build\/include\/message_keys.auto.h'$/;"	variable	line:39
+NODE_PATH	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^NODE_PATH = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/node_modules'$/;"	variable	line:40
+PEBBLE_SDK_COMMON	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^PEBBLE_SDK_COMMON = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/sdk-core\/pebble\/common'$/;"	variable	line:41
+PEBBLE_SDK_PLATFORM	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^PEBBLE_SDK_PLATFORM = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/sdk-core\/pebble\/aplite'$/;"	variable	line:42
+PEBBLE_SDK_ROOT	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^PEBBLE_SDK_ROOT = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/sdk-core\/pebble'$/;"	variable	line:43
+PLATFORM_NAME	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^PLATFORM_NAME = 'aplite'$/;"	variable	line:45
+PREFIX	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^PREFIX = '\/usr\/local'$/;"	variable	line:46
+PROJECT_INFO	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^PROJECT_INFO = {'appKeys': {}, u'sdkVersion': u'3', u'projectType': u'native', u'uuid': u'6a233b0f-6a3b-49a7-8c4d-d98ce1eb235b', u'messageKeys': {}, 'companyName': u'sxnwlfkk', u'enableMultiJS': True, u'targetPlatforms': [u'aplite', u'basalt'], 'versionLabel': u'0.2', 'longName': u'Daily Routine Test', u'displayName': u'Daily Routine Test', 'shortName': u'Daily Routine Test', u'watchapp': {u'watchface': False}, u'resources': {u'media': []}, 'name': u'Daily Routine'}$/;"	variable	line:47
+REQUESTED_PLATFORMS	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^REQUESTED_PLATFORMS = [u'aplite', u'basalt']$/;"	variable	line:48
+RESOURCES_JSON	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^RESOURCES_JSON = []$/;"	variable	line:49
+RPATH_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^RPATH_ST = '-Wl,-rpath,%s'$/;"	variable	line:50
+SANDBOX	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^SANDBOX = False$/;"	variable	line:51
+SDK_VERSION_MAJOR	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^SDK_VERSION_MAJOR = 5$/;"	variable	line:52
+SDK_VERSION_MINOR	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^SDK_VERSION_MINOR = 78$/;"	variable	line:53
+SHLIB_MARKER	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^SHLIB_MARKER = None$/;"	variable	line:54
+SIZE	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^SIZE = 'arm-none-eabi-size'$/;"	variable	line:55
+SONAME_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^SONAME_ST = '-Wl,-h,%s'$/;"	variable	line:56
+STLIBPATH_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^STLIBPATH_ST = '-L%s'$/;"	variable	line:57
+STLIB_MARKER	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^STLIB_MARKER = None$/;"	variable	line:58
+STLIB_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^STLIB_ST = '-l%s'$/;"	variable	line:59
+SUPPORTED_PLATFORMS	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^SUPPORTED_PLATFORMS = ['emery', 'basalt', 'chalk', 'diorite', 'aplite']$/;"	variable	line:60
+TARGET_PLATFORMS	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^TARGET_PLATFORMS = ['basalt', 'aplite']$/;"	variable	line:61
+TIMESTAMP	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^TIMESTAMP = 1479361808$/;"	variable	line:62
+USE_GROUPS	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^USE_GROUPS = True$/;"	variable	line:63
+VERBOSE	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^VERBOSE = 0$/;"	variable	line:64
+WEBPACK	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^WEBPACK = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/node_modules\/.bin\/webpack'$/;"	variable	line:65
+cprogram_PATTERN	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^cprogram_PATTERN = '%s'$/;"	variable	line:66
+cshlib_PATTERN	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^cshlib_PATTERN = 'lib%s.so'$/;"	variable	line:67
+cstlib_PATTERN	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^cstlib_PATTERN = 'lib%s.a'$/;"	variable	line:68
+macbundle_PATTERN	/home/cs/mysrc/pebble-daily-routine/build/c4che/aplite_cache.py	/^macbundle_PATTERN = '%s.bundle'$/;"	variable	line:69
+AR	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^AR = 'arm-none-eabi-ar'$/;"	variable	line:1
+ARFLAGS	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^ARFLAGS = 'rcs'$/;"	variable	line:2
+AS	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^AS = 'arm-none-eabi-gcc'$/;"	variable	line:3
+BINDIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^BINDIR = '\/usr\/local\/bin'$/;"	variable	line:4
+BLOCK_MESSAGE_KEYS	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^BLOCK_MESSAGE_KEYS = []$/;"	variable	line:5
+BUILD_DIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^BUILD_DIR = 'basalt'$/;"	variable	line:6
+BUILD_TYPE	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^BUILD_TYPE = 'app'$/;"	variable	line:7
+BUNDLE_BIN_DIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^BUNDLE_BIN_DIR = 'basalt'$/;"	variable	line:8
+BUNDLE_NAME	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^BUNDLE_NAME = 'pebble-daily-routine.pbw'$/;"	variable	line:9
+CC	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^CC = ['arm-none-eabi-gcc']$/;"	variable	line:10
+CCLNK_SRC_F	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^CCLNK_SRC_F = []$/;"	variable	line:11
+CCLNK_TGT_F	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^CCLNK_TGT_F = ['-o']$/;"	variable	line:12
+CC_NAME	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^CC_NAME = 'gcc'$/;"	variable	line:13
+CC_SRC_F	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^CC_SRC_F = []$/;"	variable	line:14
+CC_TGT_F	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^CC_TGT_F = ['-c', '-o']$/;"	variable	line:15
+CC_VERSION	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^CC_VERSION = ('4', '7', '2')$/;"	variable	line:16
+CFLAGS_MACBUNDLE	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^CFLAGS_MACBUNDLE = ['-fPIC']$/;"	variable	line:18
+CFLAGS_cshlib	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^CFLAGS_cshlib = ['-fPIC']$/;"	variable	line:19
+CPPPATH_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^CPPPATH_ST = '-I%s'$/;"	variable	line:20
+DEFINES_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^DEFINES_ST = '-D%s'$/;"	variable	line:22
+DEST_BINFMT	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^DEST_BINFMT = 'elf'$/;"	variable	line:23
+DEST_CPU	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^DEST_CPU = 'arm'$/;"	variable	line:24
+DEST_OS	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^DEST_OS = 'linux'$/;"	variable	line:25
+INCLUDES	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^INCLUDES = ['basalt']$/;"	variable	line:26
+LD	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^LD = 'arm-none-eabi-ld'$/;"	variable	line:27
+LIBDIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^LIBDIR = '\/usr\/local\/lib'$/;"	variable	line:28
+LIBPATH_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^LIBPATH_ST = '-L%s'$/;"	variable	line:29
+LIB_DIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^LIB_DIR = 'node_modules'$/;"	variable	line:30
+LIB_JSON	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^LIB_JSON = []$/;"	variable	line:31
+LIB_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^LIB_ST = '-l%s'$/;"	variable	line:32
+LINKFLAGS_MACBUNDLE	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^LINKFLAGS_MACBUNDLE = ['-bundle', '-undefined', 'dynamic_lookup']$/;"	variable	line:34
+LINKFLAGS_cshlib	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^LINKFLAGS_cshlib = ['-shared']$/;"	variable	line:35
+LINKFLAGS_cstlib	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^LINKFLAGS_cstlib = ['-Wl,-Bstatic']$/;"	variable	line:36
+LINK_CC	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^LINK_CC = ['arm-none-eabi-gcc']$/;"	variable	line:37
+MESSAGE_KEYS	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^MESSAGE_KEYS = {}$/;"	variable	line:38
+MESSAGE_KEYS_HEADER	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^MESSAGE_KEYS_HEADER = '\/home\/cs\/mysrc\/pebble-daily-routine\/build\/include\/message_keys.auto.h'$/;"	variable	line:39
+NODE_PATH	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^NODE_PATH = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/node_modules'$/;"	variable	line:40
+PEBBLE_SDK_COMMON	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^PEBBLE_SDK_COMMON = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/sdk-core\/pebble\/common'$/;"	variable	line:41
+PEBBLE_SDK_PLATFORM	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^PEBBLE_SDK_PLATFORM = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/sdk-core\/pebble\/basalt'$/;"	variable	line:42
+PEBBLE_SDK_ROOT	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^PEBBLE_SDK_ROOT = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/sdk-core\/pebble'$/;"	variable	line:43
+PLATFORM_NAME	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^PLATFORM_NAME = 'basalt'$/;"	variable	line:45
+PREFIX	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^PREFIX = '\/usr\/local'$/;"	variable	line:46
+PROJECT_INFO	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^PROJECT_INFO = {'appKeys': {}, u'sdkVersion': u'3', u'projectType': u'native', u'uuid': u'6a233b0f-6a3b-49a7-8c4d-d98ce1eb235b', u'messageKeys': {}, 'companyName': u'sxnwlfkk', u'enableMultiJS': True, u'targetPlatforms': [u'aplite', u'basalt'], 'versionLabel': u'0.2', 'longName': u'Daily Routine Test', u'displayName': u'Daily Routine Test', 'shortName': u'Daily Routine Test', u'watchapp': {u'watchface': False}, u'resources': {u'media': []}, 'name': u'Daily Routine'}$/;"	variable	line:47
+REQUESTED_PLATFORMS	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^REQUESTED_PLATFORMS = [u'aplite', u'basalt']$/;"	variable	line:48
+RESOURCES_JSON	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^RESOURCES_JSON = []$/;"	variable	line:49
+RPATH_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^RPATH_ST = '-Wl,-rpath,%s'$/;"	variable	line:50
+SANDBOX	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^SANDBOX = False$/;"	variable	line:51
+SDK_VERSION_MAJOR	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^SDK_VERSION_MAJOR = 5$/;"	variable	line:52
+SDK_VERSION_MINOR	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^SDK_VERSION_MINOR = 84$/;"	variable	line:53
+SHLIB_MARKER	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^SHLIB_MARKER = None$/;"	variable	line:54
+SIZE	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^SIZE = 'arm-none-eabi-size'$/;"	variable	line:55
+SONAME_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^SONAME_ST = '-Wl,-h,%s'$/;"	variable	line:56
+STLIBPATH_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^STLIBPATH_ST = '-L%s'$/;"	variable	line:57
+STLIB_MARKER	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^STLIB_MARKER = None$/;"	variable	line:58
+STLIB_ST	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^STLIB_ST = '-l%s'$/;"	variable	line:59
+SUPPORTED_PLATFORMS	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^SUPPORTED_PLATFORMS = ['emery', 'basalt', 'chalk', 'diorite', 'aplite']$/;"	variable	line:60
+TARGET_PLATFORMS	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^TARGET_PLATFORMS = ['basalt', 'aplite']$/;"	variable	line:61
+TIMESTAMP	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^TIMESTAMP = 1479361808$/;"	variable	line:62
+USE_GROUPS	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^USE_GROUPS = True$/;"	variable	line:63
+VERBOSE	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^VERBOSE = 0$/;"	variable	line:64
+WEBPACK	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^WEBPACK = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/node_modules\/.bin\/webpack'$/;"	variable	line:65
+cprogram_PATTERN	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^cprogram_PATTERN = '%s'$/;"	variable	line:66
+cshlib_PATTERN	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^cshlib_PATTERN = 'lib%s.so'$/;"	variable	line:67
+cstlib_PATTERN	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^cstlib_PATTERN = 'lib%s.a'$/;"	variable	line:68
+macbundle_PATTERN	/home/cs/mysrc/pebble-daily-routine/build/c4che/basalt_cache.py	/^macbundle_PATTERN = '%s.bundle'$/;"	variable	line:69
+BINDIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^BINDIR = '\/usr\/local\/bin'$/;"	variable	line:1
+BLOCK_MESSAGE_KEYS	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^BLOCK_MESSAGE_KEYS = []$/;"	variable	line:2
+BUILD_TYPE	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^BUILD_TYPE = 'app'$/;"	variable	line:3
+BUNDLE_NAME	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^BUNDLE_NAME = 'pebble-daily-routine.pbw'$/;"	variable	line:4
+DEFINES	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^DEFINES = ['RELEASE']$/;"	variable	line:5
+LIBDIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^LIBDIR = '\/usr\/local\/lib'$/;"	variable	line:6
+LIB_DIR	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^LIB_DIR = 'node_modules'$/;"	variable	line:7
+LIB_JSON	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^LIB_JSON = []$/;"	variable	line:8
+MESSAGE_KEYS	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^MESSAGE_KEYS = {}$/;"	variable	line:9
+MESSAGE_KEYS_HEADER	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^MESSAGE_KEYS_HEADER = '\/home\/cs\/mysrc\/pebble-daily-routine\/build\/include\/message_keys.auto.h'$/;"	variable	line:10
+NODE_PATH	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^NODE_PATH = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/node_modules'$/;"	variable	line:11
+PEBBLE_SDK_COMMON	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^PEBBLE_SDK_COMMON = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/sdk-core\/pebble\/common'$/;"	variable	line:12
+PEBBLE_SDK_ROOT	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^PEBBLE_SDK_ROOT = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/sdk-core\/pebble'$/;"	variable	line:13
+PREFIX	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^PREFIX = '\/usr\/local'$/;"	variable	line:14
+PROJECT_INFO	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^PROJECT_INFO = {'appKeys': {}, u'sdkVersion': u'3', u'projectType': u'native', u'uuid': u'6a233b0f-6a3b-49a7-8c4d-d98ce1eb235b', u'messageKeys': {}, 'companyName': u'sxnwlfkk', u'enableMultiJS': True, u'targetPlatforms': [u'aplite', u'basalt'], 'versionLabel': u'0.2', 'longName': u'Daily Routine Test', u'displayName': u'Daily Routine Test', 'shortName': u'Daily Routine Test', u'watchapp': {u'watchface': False}, u'resources': {u'media': []}, 'name': u'Daily Routine'}$/;"	variable	line:15
+REQUESTED_PLATFORMS	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^REQUESTED_PLATFORMS = [u'aplite', u'basalt']$/;"	variable	line:16
+RESOURCES_JSON	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^RESOURCES_JSON = []$/;"	variable	line:17
+SANDBOX	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^SANDBOX = False$/;"	variable	line:18
+SUPPORTED_PLATFORMS	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^SUPPORTED_PLATFORMS = ['emery', 'basalt', 'chalk', 'diorite', 'aplite']$/;"	variable	line:19
+TARGET_PLATFORMS	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^TARGET_PLATFORMS = ['basalt', 'aplite']$/;"	variable	line:20
+TIMESTAMP	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^TIMESTAMP = 1479361808$/;"	variable	line:21
+USE_GROUPS	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^USE_GROUPS = True$/;"	variable	line:22
+VERBOSE	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^VERBOSE = 0$/;"	variable	line:23
+WEBPACK	/home/cs/mysrc/pebble-daily-routine/build/c4che/_cache.py	/^WEBPACK = '\/home\/cs\/.pebble-sdk\/SDKs\/current\/node_modules\/.bin\/webpack'$/;"	variable	line:24
+version	/home/cs/mysrc/pebble-daily-routine/build/c4che/build.config.py	/^version = 0x1070b00$/;"	variable	line:1
+tools	/home/cs/mysrc/pebble-daily-routine/build/c4che/build.config.py	/^tools = [{'tool': 'pebble_sdk_common', 'tooldir': None, 'funs': None}, {'tool': 'process_message_keys', 'tooldir': None, 'funs': None}, {'tool': 'ar', 'tooldir': None, 'funs': None}, {'tool': 'c', 'tooldir': None, 'funs': None}, {'tool': 'gcc', 'tooldir': None, 'funs': None}, {'tool': 'pebble_sdk_gcc', 'tooldir': None, 'funs': None}, {'tool': 'ar', 'tooldir': None, 'funs': None}, {'tool': 'c', 'tooldir': None, 'funs': None}, {'tool': 'gcc', 'tooldir': None, 'funs': None}, {'tool': 'pebble_sdk_gcc', 'tooldir': None, 'funs': None}, {'tool': 'pebble_sdk', 'tooldir': None, 'funs': None}]$/;"	variable	line:2
+__pbl_app_info	/home/cs/mysrc/pebble-daily-routine/build/aplite/appinfo.auto.c	/^const PebbleProcessInfo __pbl_app_info __attribute__ ((section (".pbl_header"))) = {$/;"	variable	line:4
+DEFAULT_MENU_ICON	/home/cs/mysrc/pebble-daily-routine/build/aplite/src/resource_ids.auto.h	/^#define  DEFAULT_MENU_ICON /;"	macro	line:8
+targetPlatforms	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "targetPlatforms": [$/;"	function	line:2
+projectType	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "projectType": "native", $/;"	function	line:6
+name	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "name": "Daily Routine", $/;"	function	line:7
+messageKeys	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "messageKeys": {}, $/;"	function	line:8
+companyName	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "companyName": "sxnwlfkk", $/;"	function	line:9
+enableMultiJS	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "enableMultiJS": true, $/;"	function	line:10
+versionLabel	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "versionLabel": "0.2", $/;"	function	line:11
+capabilities	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "capabilities": [], $/;"	function	line:12
+sdkVersion	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "sdkVersion": "3", $/;"	function	line:13
+appKeys	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "appKeys": {}, $/;"	function	line:14
+longName	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "longName": "Daily Routine Test", $/;"	function	line:15
+displayName	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "displayName": "Daily Routine Test", $/;"	function	line:16
+shortName	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "shortName": "Daily Routine Test", $/;"	function	line:17
+watchapp	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "watchapp": {$/;"	function	line:18
+watchface	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^        "watchface": false$/;"	function	line:19
+resources	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "resources": {$/;"	function	line:21
+media	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^        "media": []$/;"	function	line:22
+uuid	/home/cs/mysrc/pebble-daily-routine/build/appinfo.json	/^    "uuid": "6a233b0f-6a3b-49a7-8c4d-d98ce1eb235b"$/;"	function	line:24
+README	/home/cs/mysrc/pebble-daily-routine/README.md	/^# README #$/;"	function	line:1
+What is this repository for?	/home/cs/mysrc/pebble-daily-routine/README.md	/^### What is this repository for? ###$/;"	function	line:5
+How do I get set up?	/home/cs/mysrc/pebble-daily-routine/README.md	/^### How do I get set up? ###$/;"	function	line:11
+Contribution guidelines	/home/cs/mysrc/pebble-daily-routine/README.md	/^### Contribution guidelines ###$/;"	function	line:20
+Who do I talk to?	/home/cs/mysrc/pebble-daily-routine/README.md	/^### Who do I talk to? ###$/;"	function	line:26
+ritual_endWindow	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_end_window.h	/^Window *ritual_endWindow;$/;"	variable	line:6
+nextRitualWindow	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^Window *nextRitualWindow;$/;"	variable	line:5
+nextRitualText	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^TextLayer *nextRitualText, *next_ritual_countdown_text_layer;$/;"	variable	line:6
+next_ritual_countdown_text_layer	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^TextLayer *nextRitualText, *next_ritual_countdown_text_layer;$/;"	variable	line:6
+wakeup_timestamp	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^time_t wakeup_timestamp = 0;$/;"	variable	line:7
+next_ritual_time	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^time_t next_ritual_time;$/;"	variable	line:8
+next_ritual_countdown_text	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^char next_ritual_countdown_text[32];$/;"	variable	line:9
+r_len	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^char r_len[9] = "000:000";$/;"	variable	line:10
+timer_handler	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^static void timer_handler(void *data) {$/;"	function	line:13	file:	signature:(void *data)
+next_ritual_window_show	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^void next_ritual_window_show(time_t next_time){$/;"	function	line:38	signature:(time_t next_time)
+next_ritual_window_load	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^void next_ritual_window_load(Window *window) {$/;"	function	line:53	signature:(Window *window)
+next_ritual_window_unload	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^void next_ritual_window_unload(Window *window) {$/;"	function	line:80	signature:(Window *window)
+next_ritual_window_create	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^void next_ritual_window_create() {$/;"	function	line:85
+next_ritual_window_destroy	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^void next_ritual_window_destroy() {$/;"	function	line:93
+next_ritual_window_get_window	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.c	/^Window *next_ritual_window_get_window() {$/;"	function	line:97
+ritual_startWindow	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.h	/^Window *ritual_startWindow;$/;"	variable	line:6
+id	/home/cs/mysrc/pebble-daily-routine/src/c/wakeups.h	/^WakeupId id;$/;"	variable	line:7
+ritual_startWindow	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.c	/^Window *ritual_startWindow;$/;"	variable	line:6
+ritual_start_text_layer	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.c	/^TextLayer *ritual_start_text_layer;$/;"	variable	line:7
+first_item_name	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.c	/^char first_item_name[30];$/;"	variable	line:8
+first_item_time_string	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.c	/^char first_item_time_string[] = "00:00";$/;"	variable	line:9
+ritual_start_window_show	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.c	/^void ritual_start_window_show() {$/;"	function	line:11
+ritual_start_window_load	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.c	/^void ritual_start_window_load(Window *window) {$/;"	function	line:27	signature:(Window *window)
+ritual_start_window_unload	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.c	/^void ritual_start_window_unload(Window *window) {$/;"	function	line:49	signature:(Window *window)
+ritual_start_window_create	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.c	/^void ritual_start_window_create() {$/;"	function	line:53
+ritual_start_window_destroy	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.c	/^void ritual_start_window_destroy() {$/;"	function	line:61
+ritual_start_window_get_window	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_start_window.c	/^Window *ritual_start_window_get_window() {$/;"	function	line:65
+settings	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^Settings settings = {$/;"	variable	line:12
+item_names	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^char item_names[num_of_items][30] = {"First", "Second", "Third",$/;"	variable	line:23
+item_times	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^int item_times[num_of_items] = {10, 200, 500, 400, 600, 150, 250, 350, 450, 50, 13, 55, 0};$/;"	variable	line:27
+current_item	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^Item current_item;$/;"	variable	line:28
+write_curr_item	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void write_curr_item(int key) {$/;"	function	line:33	signature:(int key)
+load_curr_item	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void load_curr_item(int key) {$/;"	function	line:37	signature:(int key)
+save_state	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void save_state() {$/;"	function	line:41
+load_state	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void load_state() {$/;"	function	line:45
+calculate_next_ritual	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^time_t calculate_next_ritual() {$/;"	function	line:51
+distribute_carry_loss	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void distribute_carry_loss() {$/;"	function	line:63
+reset	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void reset() {$/;"	function	line:90
+abs	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^int abs(int val) {$/;"	function	line:106	signature:(int val)
+calculate_first_carry	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ int calculate_first_carry() {$/;"	function	line:115
+first_setup	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void first_setup() {$/;"	function	line:122
+setup	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void setup() {$/;"	function	line:139
+init	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void init(void){$/;"	function	line:145	signature:(void)
+deinit	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void deinit(void){$/;"	function	line:179	signature:(void)
+open_starting_window	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^ void open_starting_window() {$/;"	function	line:198
+main	/home/cs/mysrc/pebble-daily-routine/src/c/main.c	/^int main()$/;"	function	line:238
+id	/home/cs/mysrc/pebble-daily-routine/src/c/wakeups.c	/^WakeupId id;$/;"	variable	line:7
+expon	/home/cs/mysrc/pebble-daily-routine/src/c/wakeups.c	/^int expon(int x, int y) {$/;"	function	line:9	signature:(int x, int y)
+wakeup_handler	/home/cs/mysrc/pebble-daily-routine/src/c/wakeups.c	/^void wakeup_handler(WakeupId id, int32_t reason) {$/;"	function	line:22	signature:(WakeupId id, int32_t reason)
+schedule_wakeup	/home/cs/mysrc/pebble-daily-routine/src/c/wakeups.c	/^void schedule_wakeup(int key, time_t w_time, int offset, int reason) {$/;"	function	line:48	signature:(int key, time_t w_time, int offset, int reason)
+check_next_start_time	/home/cs/mysrc/pebble-daily-routine/src/c/wakeups.c	/^void check_next_start_time() {$/;"	function	line:76
+ritual_endWindow	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_end_window.c	/^Window *ritual_endWindow;$/;"	variable	line:5
+ritual_end_text_layer	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_end_window.c	/^TextLayer *ritual_end_text_layer;$/;"	variable	line:6
+end_time	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_end_window.c	/^char * end_time = "00:00 ";$/;"	variable	line:7
+ritual_end_window_show	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_end_window.c	/^void ritual_end_window_show(){$/;"	function	line:9
+ritual_end_window_load	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_end_window.c	/^void ritual_end_window_load(Window *window) {$/;"	function	line:25	signature:(Window *window)
+ritual_end_window_unload	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_end_window.c	/^void ritual_end_window_unload(Window *window) {$/;"	function	line:48	signature:(Window *window)
+ritual_end_window_create	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_end_window.c	/^void ritual_end_window_create() {$/;"	function	line:52
+ritual_end_window_destroy	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_end_window.c	/^void ritual_end_window_destroy() {$/;"	function	line:60
+ritual_end_window_get_window	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_end_window.c	/^Window *ritual_end_window_get_window() {$/;"	function	line:64
+nextRitualWindow	/home/cs/mysrc/pebble-daily-routine/src/c/next_ritual_window.h	/^Window *nextRitualWindow;$/;"	variable	line:6
+ritual_itemWindow	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.h	/^Window *ritual_itemWindow;$/;"	variable	line:6
+SETTINGS_KEY	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define SETTINGS_KEY /;"	macro	line:5
+ONE_DAY	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define ONE_DAY /;"	macro	line:6
+WK_KEY1	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define WK_KEY1 /;"	macro	line:7
+WK_KEY2	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define WK_KEY2 /;"	macro	line:8
+WK_KEY3	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define WK_KEY3 /;"	macro	line:9
+WK_KEY4	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define WK_KEY4 /;"	macro	line:10
+WK_KEY5	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define WK_KEY5 /;"	macro	line:11
+WK_KEY6	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define WK_KEY6 /;"	macro	line:12
+WK_KEY7	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define WK_KEY7 /;"	macro	line:13
+WK_KEY8	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define WK_KEY8 /;"	macro	line:14
+num_of_items	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^#define num_of_items /;"	macro	line:15
+Item	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^typedef struct Item {$/;"	struct	line:18
+name	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  char name[20];$/;"	member	line:19	struct:Item
+time	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  int time;$/;"	member	line:20	struct:Item
+remaining_time	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  int remaining_time;$/;"	member	line:21	struct:Item
+pre_carry_stage	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  bool pre_carry_stage;$/;"	member	line:22	struct:Item
+timer_timestamp	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  time_t timer_timestamp;$/;"	member	line:23	struct:Item
+carry_timer_timestamp	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  time_t carry_timer_timestamp;$/;"	member	line:24	struct:Item
+Item	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^} Item;$/;"	typedef	line:25	typeref:struct:Item
+Settings	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^typedef struct Settings {$/;"	struct	line:28
+weekdays	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  int weekdays[7];$/;"	member	line:29	struct:Settings
+goal_time	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  int goal_time[2];$/;"	member	line:30	struct:Settings
+item_keys	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  int item_keys[num_of_items];$/;"	member	line:31	struct:Settings
+routine_length	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  int routine_length;$/;"	member	line:32	struct:Settings
+carry_time	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  int carry_time;$/;"	member	line:33	struct:Settings
+current_item	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  int current_item;$/;"	member	line:34	struct:Settings
+on_time	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  bool on_time;$/;"	member	line:35	struct:Settings
+finish_time	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^  time_t finish_time;$/;"	member	line:36	struct:Settings
+Settings	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^} Settings;$/;"	typedef	line:37	typeref:struct:Settings
+settings	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^Settings settings;$/;"	variable	line:39
+current_item	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^Item current_item;$/;"	variable	line:40
+item_names	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^char item_names[num_of_items][30];$/;"	variable	line:41
+item_times	/home/cs/mysrc/pebble-daily-routine/src/c/main.h	/^int item_times[num_of_items];$/;"	variable	line:42
+start_window_back_button_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void start_window_back_button_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:14	file:	signature:(ClickRecognizerRef recognizer, void *context)
+start_window_up_click_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:18	file:	signature:(ClickRecognizerRef recognizer, void *context)
+start_window_down_click_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void start_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:42	file:	signature:(ClickRecognizerRef recognizer, void *context)
+start_window_click_config_provider	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^void start_window_click_config_provider(void *context) {$/;"	function	line:72	signature:(void *context)
+back_button_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void back_button_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:89	file:	signature:(ClickRecognizerRef recognizer, void *context)
+item_window_select_down_click_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void item_window_select_down_click_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:94	file:	signature:(ClickRecognizerRef recognizer, void *context)
+item_window_select_up_click_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void item_window_select_up_click_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:99	file:	signature:(ClickRecognizerRef recognizer, void *context)
+item_window_up_click_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void item_window_up_click_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:108	file:	signature:(ClickRecognizerRef recognizer, void *context)
+item_window_down_click_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void item_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:124	file:	signature:(ClickRecognizerRef recognizer, void *context)
+item_window_click_config_provider	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^void item_window_click_config_provider(void *context) {$/;"	function	line:173	signature:(void *context)
+next_ritual_window_down_click_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void next_ritual_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:192	file:	signature:(ClickRecognizerRef recognizer, void *context)
+next_ritual_window_back_click_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void next_ritual_window_back_click_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:201	file:	signature:(ClickRecognizerRef recognizer, void *context)
+next_ritual_window_click_config_provider	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^void next_ritual_window_click_config_provider(void *context) {$/;"	function	line:206	signature:(void *context)
+end_window_back_button_handler	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^static void end_window_back_button_handler(ClickRecognizerRef recognizer, void *context) {$/;"	function	line:221	file:	signature:(ClickRecognizerRef recognizer, void *context)
+end_window_click_config_provider	/home/cs/mysrc/pebble-daily-routine/src/c/button_handlers.c	/^void end_window_click_config_provider(void *context) {$/;"	function	line:229	signature:(void *context)
+ritual_itemWindow	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^Window *ritual_itemWindow;$/;"	variable	line:7
+ritual_item_text_layer	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^TextLayer *ritual_item_text_layer;$/;"	variable	line:8
+ritual_carry_text_layer	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^TextLayer *ritual_carry_text_layer;$/;"	variable	line:9
+half_time	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^int half_time;$/;"	variable	line:10
+fifth_time	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^int fifth_time;$/;"	variable	line:11
+plus	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^char plus = 43;$/;"	variable	line:12
+item_name	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^char item_name[30];$/;"	variable	line:13
+item_time_string	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^char item_time_string[] = " 00:00 ";$/;"	variable	line:14
+carry_time_string	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^char carry_time_string[] = " 00:00 ";$/;"	variable	line:15
+item_out_of_max	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^char item_out_of_max[] = "[00\/00]";$/;"	variable	line:16
+vibrated	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^bool vibrated = false;$/;"	variable	line:17
+make_time_from_int	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^time_t make_time_from_int(int seconds) {$/;"	function	line:21	signature:(int seconds)
+make_int_from_time	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^int make_int_from_time(time_t timer_time) {$/;"	function	line:26	signature:(time_t timer_time)
+ritual_item_window_show	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^void ritual_item_window_show(){$/;"	function	line:33
+timer_handler	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^static void timer_handler(void *data) {$/;"	function	line:76	file:	signature:(void *data)
+ritual_item_window_load	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^void ritual_item_window_load(Window *window) {$/;"	function	line:149	signature:(Window *window)
+ritual_item_window_unload	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^void ritual_item_window_unload(Window *window) {$/;"	function	line:182	signature:(Window *window)
+ritual_item_window_disappear	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^void ritual_item_window_disappear(Window *window) {$/;"	function	line:188	signature:(Window *window)
+ritual_item_window_create	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^void ritual_item_window_create() {$/;"	function	line:194
+ritual_item_window_destroy	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^void ritual_item_window_destroy() {$/;"	function	line:203
+ritual_item_window_get_window	/home/cs/mysrc/pebble-daily-routine/src/c/ritual_item_window.c	/^Window *ritual_item_window_get_window() {$/;"	function	line:207

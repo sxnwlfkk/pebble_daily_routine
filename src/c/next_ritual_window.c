@@ -47,7 +47,6 @@ void next_ritual_window_show(time_t next_time){
     snprintf(r_len, sizeof(r_len), "%d:%d", hours, minutes);
   }
 
-
   window_stack_push(next_ritual_window_get_window(), true);
 }
 

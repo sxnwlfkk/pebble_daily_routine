@@ -15,8 +15,6 @@ int expon(int x, int y) {
 }
 
 
-
-
 ////////////////////
 // Wakeup Handler //
 ////////////////////
@@ -26,28 +24,18 @@ void wakeup_handler(WakeupId id, int32_t reason) {
   // Wakeup due to next ritual //
   if (reason == 1) {
     vibes_double_pulse();
+    light_enable_interaction();
 
     next_ritual_window_create();
     window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
-    next_ritual_window_show(calculate_next_ritual());
+    next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
   // Wakeup due to end times //
   } else if (reason == 2) {
     vibes_double_pulse();
+    light_enable_interaction();
 
     ritual_end_window_create();
     window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
-    char time_s[5] = "00:00";
-
-    int hours = settings.goal_time[0];
-    int seconds = settings.goal_time[1];
-    if (seconds < 10) {
-      snprintf(time_s, sizeof(time_s), "%d:0%d", hours, seconds);
-
-    // Second is greater than 10 //
-    } else {
-      snprintf(time_s, sizeof(time_s), "%d:%d", hours, seconds);
-    }
-
     ritual_end_window_show(time_s);
   }
 }
@@ -89,7 +77,7 @@ void check_next_start_time() {
   if (persist_exists(WK_KEY1)) {
     int w_id = persist_read_int(WK_KEY1);
     if (!wakeup_query(w_id, NULL)) {
-      schedule_wakeup(WK_KEY1, (time_t)calculate_next_ritual(), -90, 1);
+      schedule_wakeup(WK_KEY1, (time_t)calculate_next_ritual(), -90, 1); // Needs - settings.routine_length
     }
   }
 }

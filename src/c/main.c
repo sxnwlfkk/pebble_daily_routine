@@ -157,6 +157,22 @@ int abs(int val) {
     first_setup();
     save_state();
   }
+
+  // Wakueup handling //
+
+  if(launch_reason() == APP_LAUNCH_WAKEUP) {
+    // The app was started by a wakeup event.
+    WakeupId id = 0;
+    int32_t reason = 0;
+
+    // Get details and handle the event appropriately
+    wakeup_get_launch_event(&id, &reason);
+    wakeup_handler(id, reason);
+  }
+
+  wakeup_service_subscribe(wakeup_handler);
+  check_next_start_time();
+
 }
 
 
@@ -183,19 +199,12 @@ int abs(int val) {
   // If routine is not in progress //
   if (settings.current_item == -1) {
 
-    // If next routine starts in more than five minutes //
-    if (calculate_next_ritual() - 300 > time(NULL)) {
+    // If routine is not in progress //
+    if (calculate_next_ritual() > time(NULL)) {
 
       next_ritual_window_create();
       window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
       next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
-    // If next routine starts in less than five minutes //
-    } else {
-      load_curr_item(settings.item_keys[0]);
-
-      ritual_start_window_create();
-      window_set_click_config_provider(ritual_startWindow, start_window_click_config_provider);
-      ritual_start_window_show();
     }
 
   // If routine is in progress, load state and continue, where left off //
