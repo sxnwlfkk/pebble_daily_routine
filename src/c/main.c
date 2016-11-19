@@ -81,9 +81,9 @@ time_t calculate_next_ritual() {
 }
 
 
-/* If user went to negative carry, distribute the loss between
-   the remaining items proportional to their remaining times */
- void distribute_carry_loss() {
+// If user went to negative carry, distribute the loss between
+// the remaining items proportional to their remaining times
+void distribute_carry_loss() {
   int total_remaining_time = 0;
 
   // Count remaining time //
@@ -99,11 +99,9 @@ time_t calculate_next_ritual() {
       proportional_loss = (int) ((float)settings.carry_time * ((float) current_item.remaining_time / (float)total_remaining_time));
       current_item.remaining_time += proportional_loss; // Should be always negative
       write_curr_item(settings.item_keys[i]);
-  }
-
+    }
   load_curr_item(settings.item_keys[settings.current_item]);
-}
-
+  }
   // Set carry_time to zero after all this //
   settings.carry_time = 0;
 }
@@ -193,11 +191,9 @@ int abs(int val) {
     wakeup_get_launch_event(&id, &reason);
     wakeup_handler(id, reason);
   }
-
   wakeup_service_subscribe(wakeup_handler);
   wu_check_next_start_time();
   log_settings_dump();
-
 }
 
 
@@ -254,7 +250,6 @@ int abs(int val) {
     } else {
       settings.carry_time = (int)(current_item.carry_timer_timestamp - time(NULL));
     }
-
     ritual_item_window_show();
   }
 }

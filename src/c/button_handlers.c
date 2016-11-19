@@ -7,10 +7,10 @@
 #include "button_handlers.h"
 #include "wakeups.h"
 
+
 //////////////////////////
 // Start Window Buttons //
 //////////////////////////
-
 
 static void start_window_back_button_handler(ClickRecognizerRef recognizer, void *context) {
   deinit();
@@ -43,7 +43,6 @@ static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *c
 
 
 static void start_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
-
   // I don't know what causes this //
   if (current_item.remaining_time < 0 && settings.current_item == -1) {
     current_item.remaining_time = current_item.time;
@@ -125,7 +124,6 @@ static void item_window_up_click_handler(ClickRecognizerRef recognizer, void *co
 
 
 static void item_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
-
   // I don't know what causes this //
   if (current_item.remaining_time < 0 && settings.current_item == -1) {
     current_item.remaining_time = current_item.time;
@@ -168,7 +166,6 @@ static void item_window_down_click_handler(ClickRecognizerRef recognizer, void *
    window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
    ritual_end_window_show();
   }
-
 }
 
 
