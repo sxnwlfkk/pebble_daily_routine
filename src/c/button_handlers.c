@@ -17,7 +17,6 @@ static void start_window_back_button_handler(ClickRecognizerRef recognizer, void
 }
 
 static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *context) {
-
   // I don't know what causes this //
   if (current_item.remaining_time < 0 && settings.current_item == -1) {
     current_item.remaining_time = current_item.time;
@@ -39,7 +38,6 @@ static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *c
   ritual_item_window_create();
   window_set_click_config_provider(ritual_itemWindow, item_window_click_config_provider);
   ritual_item_window_show();
-
 }
 
 
@@ -58,7 +56,6 @@ static void start_window_down_click_handler(ClickRecognizerRef recognizer, void 
   settings.finish_time = time_start_of_today() +
                              settings.goal_time[0]*60 +
                              settings.goal_time[1]*60*60;
-
   if (settings.carry_time < 0)
     distribute_carry_loss();
 
@@ -71,9 +68,7 @@ static void start_window_down_click_handler(ClickRecognizerRef recognizer, void 
   ritual_item_window_create();
   window_set_click_config_provider(ritual_itemWindow, item_window_click_config_provider);
   ritual_item_window_show();
-
 }
-
 
 
 void start_window_click_config_provider(void *context) {
@@ -91,7 +86,6 @@ void start_window_click_config_provider(void *context) {
 ///////////////////////////
 
 // Item window handlers //
-
 
 static void back_button_handler(ClickRecognizerRef recognizer, void *context) {
   deinit();
@@ -217,7 +211,6 @@ void next_ritual_window_click_config_provider(void *context) {
 
   window_single_click_subscribe(id_down, next_ritual_window_down_click_handler);
   window_single_click_subscribe(id_back, next_ritual_window_back_click_handler);
-
 }
 
 

@@ -29,6 +29,13 @@ Item current_item;
 
 // Logging //
 
+void log_formatted_time(time_t time_utc) {
+  char wk_time_str[40];
+  strftime(wk_time_str, sizeof(char[40]), "%a %D, %H:%m", gmtime(&time_utc));
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "%s", wk_time_str);
+}
+
+
 void log_settings_dump() {
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "The settings contains:");
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.goal_time = %d:%d", settings.goal_time[0], settings.goal_time[1]);
@@ -41,12 +48,6 @@ void log_settings_dump() {
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.current_item = %d", settings.current_item);
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.current_item = %d", settings.current_item);
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "settings.routine_length = %d", settings.routine_length);
-}
-
-void log_formatted_time(time_t time_utc) {
-  char wk_time_str[40];
-  strftime(wk_time_str, sizeof(char[40]), "%a %D, %H:%m", gmtime(&time_utc));
-  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "%s", wk_time_str);
 }
 
 
@@ -180,6 +181,7 @@ int abs(int val) {
     save_state();
   }
 
+
   // Wakueup handling //
 
   if (launch_reason() == APP_LAUNCH_WAKEUP) {
@@ -258,8 +260,7 @@ int abs(int val) {
 }
 
 
-int main()
-{
+int main() {
   init();
   open_starting_window();
   app_event_loop();
