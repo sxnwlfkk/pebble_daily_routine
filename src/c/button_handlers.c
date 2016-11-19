@@ -5,6 +5,7 @@
 #include "ritual_item_window.h"
 #include "ritual_end_window.h"
 #include "button_handlers.h"
+#include "wakeups.h"
 
 //////////////////////////
 // Start Window Buttons //
@@ -97,15 +98,15 @@ static void back_button_handler(ClickRecognizerRef recognizer, void *context) {
 }
 
 
-static void item_window_select_down_click_handler(ClickRecognizerRef recognizer, void *context) {
+static void item_window_select_up_click_handler(ClickRecognizerRef recognizer, void *context) {
   return;
 }
 
 
-static void item_window_select_up_click_handler(ClickRecognizerRef recognizer, void *context) {
+static void item_window_select_down_click_handler(ClickRecognizerRef recognizer, void *context) {
   reset();
+  cancel_end_wakeup();
   save_state();
-  // clear_data_variables();
   init();
   open_starting_window();
 }
@@ -166,9 +167,10 @@ static void item_window_down_click_handler(ClickRecognizerRef recognizer, void *
     ritual_item_window_show();
  } else {
    // Set up end window, reset all progress data
-    ritual_end_window_create();
-    window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
-    ritual_end_window_show();
+   cancel_end_wakeup();
+   ritual_end_window_create();
+   window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
+   ritual_end_window_show();
   }
 
 }
@@ -186,7 +188,7 @@ void item_window_click_config_provider(void *context) {
   window_single_click_subscribe(id_down, item_window_down_click_handler);
   window_single_click_subscribe(id_up, item_window_up_click_handler);
   window_single_click_subscribe(id_back, back_button_handler);
-  window_long_click_subscribe(id_select, delay_ms, item_window_select_up_click_handler, NULL);
+  window_long_click_subscribe(id_select, delay_ms, item_window_select_down_click_handler, NULL);
 }
 
 
