@@ -16,6 +16,7 @@ static void start_window_back_button_handler(ClickRecognizerRef recognizer, void
   deinit();
 }
 
+
 static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *context) {
   // I don't know what causes this //
   if (current_item.remaining_time < 0 && settings.current_item == -1) {
@@ -80,6 +81,7 @@ void start_window_click_config_provider(void *context) {
   window_single_click_subscribe(id_up, start_window_up_click_handler);
   window_single_click_subscribe(id_back, start_window_back_button_handler);
 }
+
 
 ///////////////////////////
 /// Item Window Buttons ///

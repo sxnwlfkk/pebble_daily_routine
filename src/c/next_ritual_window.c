@@ -2,6 +2,7 @@
 #include "next_ritual_window.h"
 #include "main.h"
 
+
 Window *nextRitualWindow;
 TextLayer *nextRitualText, *next_ritual_countdown_text_layer;
 time_t wakeup_timestamp = 0;
@@ -11,7 +12,6 @@ char r_len[9] = "000:000";
 
 
 static void timer_handler(void *data) {
-
   int countdown = wakeup_timestamp - time(NULL);
   if (countdown < 0) {
     int hours = (-1)*countdown/60/60;
@@ -35,6 +35,7 @@ static void timer_handler(void *data) {
   app_timer_register(29000, timer_handler, data);
 }
 
+
 void next_ritual_window_show(time_t next_time){
   next_ritual_time = next_time;
 
@@ -49,6 +50,7 @@ void next_ritual_window_show(time_t next_time){
 
   window_stack_push(next_ritual_window_get_window(), true);
 }
+
 
 void next_ritual_window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
@@ -74,13 +76,14 @@ void next_ritual_window_load(Window *window) {
 
   wakeup_timestamp = next_ritual_time;
   app_timer_register(0, timer_handler, NULL);
-
 }
+
 
 void next_ritual_window_unload(Window *window) {
   text_layer_destroy(next_ritual_countdown_text_layer);
   text_layer_destroy(nextRitualText);
 }
+
 
 void next_ritual_window_create() {
   nextRitualWindow = window_create();
@@ -90,9 +93,11 @@ void next_ritual_window_create() {
   });
 }
 
+
 void next_ritual_window_destroy() {
   window_destroy(nextRitualWindow);
 }
+
 
 Window *next_ritual_window_get_window() {
   return nextRitualWindow;

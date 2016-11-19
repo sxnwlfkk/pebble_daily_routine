@@ -4,6 +4,7 @@
 #include "button_handlers.h"
 #include "main.h"
 
+
 Window *ritual_itemWindow;
 TextLayer *ritual_item_text_layer;
 TextLayer *ritual_carry_text_layer;
@@ -22,6 +23,7 @@ time_t make_time_from_int(int seconds) {
   time_t timer_time = time(NULL);
   return timer_time + (time_t)seconds;
 }
+
 
 int make_int_from_time(time_t timer_time) {
   int seconds = timer_time - time(NULL);
@@ -179,11 +181,13 @@ void ritual_item_window_load(Window *window) {
   app_timer_register(0, timer_handler, NULL);
 }
 
+
 void ritual_item_window_unload(Window *window) {
   text_layer_destroy(ritual_item_text_layer);
   text_layer_destroy(ritual_carry_text_layer);
   ritual_itemWindow = NULL;
 }
+
 
 void ritual_item_window_disappear(Window *window) {
   save_state();
@@ -200,9 +204,11 @@ void ritual_item_window_create() {
   });
 }
 
+
 void ritual_item_window_destroy() {
   window_destroy(ritual_itemWindow);
 }
+
 
 Window *ritual_item_window_get_window() {
   return ritual_itemWindow;

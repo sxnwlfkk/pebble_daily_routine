@@ -2,12 +2,13 @@
 #include "ritual_end_window.h"
 #include "main.h"
 
+
 Window *ritual_endWindow;
 TextLayer *ritual_end_text_layer;
 char * end_time = "00:00 ";
 
-void ritual_end_window_show(){
 
+void ritual_end_window_show(){
   int hours = (time(NULL) - time_start_of_today()) / 60 / 60;
   int minutes = ((time(NULL) - time_start_of_today()) / 60) % 60;
 
@@ -21,6 +22,7 @@ void ritual_end_window_show(){
 
   window_stack_push(ritual_end_window_get_window(), true);
 }
+
 
 void ritual_end_window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
@@ -45,9 +47,11 @@ void ritual_end_window_load(Window *window) {
   layer_add_child(window_layer, text_layer_get_layer(ritual_end_text_layer));
 }
 
+
 void ritual_end_window_unload(Window *window) {
   text_layer_destroy(ritual_end_text_layer);
 }
+
 
 void ritual_end_window_create() {
   ritual_endWindow = window_create();
@@ -57,9 +61,11 @@ void ritual_end_window_create() {
   });
 }
 
+
 void ritual_end_window_destroy() {
   window_destroy(ritual_endWindow);
 }
+
 
 Window *ritual_end_window_get_window() {
   return ritual_endWindow;

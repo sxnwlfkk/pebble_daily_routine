@@ -3,10 +3,12 @@
 #include "main.h"
 #include "wakeups.h"
 
+
 Window *ritual_startWindow;
 TextLayer *ritual_start_text_layer;
 char first_item_name[30];
 char first_item_time_string[] = "00:00";
+
 
 void ritual_start_window_show() {
   strncpy(first_item_name, current_item.name, sizeof(first_item_name));
@@ -46,9 +48,11 @@ void ritual_start_window_load(Window *window) {
   layer_add_child(window_layer, text_layer_get_layer(ritual_start_text_layer));
 }
 
+
 void ritual_start_window_unload(Window *window) {
  text_layer_destroy(ritual_start_text_layer);
 }
+
 
 void ritual_start_window_create() {
   ritual_startWindow = window_create();
@@ -58,9 +62,11 @@ void ritual_start_window_create() {
   });
 }
 
+
 void ritual_start_window_destroy() {
   window_destroy(ritual_startWindow);
 }
+
 
 Window *ritual_start_window_get_window() {
   return ritual_startWindow;
