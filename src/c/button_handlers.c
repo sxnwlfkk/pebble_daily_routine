@@ -32,6 +32,9 @@ static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *c
   settings.current_item++;
   load_curr_item(settings.item_keys[settings.current_item]);
 
+  // Schedule wakeup at routine length from button press
+  schedule_end_wakeup(time(NULL) + settings.routine_length);
+
   ritual_item_window_create();
   window_set_click_config_provider(ritual_itemWindow, item_window_click_config_provider);
   ritual_item_window_show();
@@ -60,6 +63,9 @@ static void start_window_down_click_handler(ClickRecognizerRef recognizer, void 
 
   settings.current_item++;
   load_curr_item(settings.item_keys[settings.current_item]);
+
+  // Schedule wakeup at designated end point
+  schedule_end_wakeup(calculate_next_ritual());
 
   ritual_item_window_create();
   window_set_click_config_provider(ritual_itemWindow, item_window_click_config_provider);
