@@ -28,7 +28,7 @@ void wakeup_handler(WakeupId id, int32_t reason) {
     next_ritual_window_create();
     window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
     next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
-    
+
   } else if (reason == 1) {
     // Wakeup due to next ritual, but the ritual is started //
     vibes_double_pulse();
@@ -81,6 +81,7 @@ void schedule_wakeup(int key, time_t w_time, int offset, int reason) {
 void wu_check_next_start_time() {
 
   time_t next_time = calculate_next_ritual() - settings.routine_length;
+
   if (time(NULL) > next_time)
     next_time += ONE_DAY;
 
@@ -112,5 +113,22 @@ void wu_check_next_start_time() {
       APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Scheduling wakeup time first. It'll be at:");
       wakeup_query(w_id, &wk_time);
       log_formatted_time(wk_time);
+  }
+}
+
+
+////////////////////////////////////////////
+// Schedule routine end wakeup and cancel //
+////////////////////////////////////////////
+
+void schedule_end_wakeup(time_t end_time) {
+  schedule_wakeup(WK_KEY2, end_time, 0, 2);
+}
+
+
+void cancel_end_wakeup() {
+  if (persist_exists(WK_KEY2)) {
+    int w_id = persist_read_int(WK_KEY1);
+    wakeup_cancel(w_id);
   }
 }
