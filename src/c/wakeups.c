@@ -23,6 +23,7 @@ int expon(int x, int y) {
 void wakeup_handler(WakeupId id, int32_t reason) {
   if (reason == 1 && settings.current_item == -1) {
     // Wakeup due to next ritual, and ritual isn't started //
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Wakeup reason: app closed, start time.");
     vibes_double_pulse();
     light_enable_interaction();
 
@@ -32,11 +33,13 @@ void wakeup_handler(WakeupId id, int32_t reason) {
 
   } else if (reason == 1) {
     // Wakeup due to next ritual, but the ritual is started //
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Wakeup reason: app open, start time.");
     vibes_double_pulse();
     light_enable_interaction();
 
   } else if (reason == 2) {
     // Wakeup due to end times //
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Wakeup reason: end time reached.");
     vibes_double_pulse();
     light_enable_interaction();
 
@@ -124,6 +127,14 @@ void wu_check_next_start_time() {
 
 void schedule_end_wakeup(time_t end_time) {
   schedule_wakeup(WK_KEY2, end_time, 0, 2);
+
+  // Logging //
+  int w_id = persist_read_int(WK_KEY2);
+  time_t wk_time;
+
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Scheduling end time. It'll be at:");
+  wakeup_query(w_id, &wk_time);
+  log_formatted_time(wk_time);
 }
 
 
@@ -131,5 +142,8 @@ void cancel_end_wakeup() {
   if (persist_exists(WK_KEY2)) {
     int w_id = persist_read_int(WK_KEY1);
     wakeup_cancel(w_id);
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Cancelled end wakeup.");
+  } else {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Didn't cancel end wakeup, wasn't any.");
   }
 }

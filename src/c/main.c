@@ -11,7 +11,7 @@
 // Settings //
 Settings settings = {
   .weekdays = {1, 1, 1, 1, 1, 0, 0},
-  .goal_time = {9,5},
+  .goal_time = {10,47},
   .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109},
   .carry_time = 0,
   .current_item = -1,
@@ -22,8 +22,8 @@ Settings settings = {
 char item_names[num_of_items][30] = {"First", "Second", "Third", "Fourth", "Fifth",
                                      "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"};
 
-int item_times[num_of_items] = {60, 60, 60, 60, 60,
-                                60, 60, 60, 60, 60};
+int item_times[num_of_items] = {6, 6, 6, 6, 6,
+                                6, 6, 6, 6, 6};
 Item current_item;
 
 
@@ -218,6 +218,7 @@ int abs(int val) {
 }
 
  void open_starting_window() {
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Open starting window.");
   // If routine is not in progress //
   if (settings.current_item == -1) {
 
