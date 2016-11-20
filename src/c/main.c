@@ -11,7 +11,7 @@
 // Settings //
 Settings settings = {
   .weekdays = {1, 1, 1, 1, 1, 0, 0},
-  .goal_time = {22,10},
+  .goal_time = {9,5},
   .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109},
   .carry_time = 0,
   .current_item = -1,
@@ -31,7 +31,7 @@ Item current_item;
 
 void log_formatted_time(time_t time_utc) {
   char wk_time_str[40];
-  strftime(wk_time_str, sizeof(char[40]), "%a %D, %H:%m", gmtime(&time_utc));
+  strftime(wk_time_str, sizeof(char[40]), "%a %D, %H:%M", gmtime(&time_utc));
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "%s", wk_time_str);
 }
 
@@ -200,6 +200,7 @@ int abs(int val) {
  void deinit(void){
   save_state();
   write_curr_item(settings.item_keys[settings.current_item]);
+  wu_check_next_start_time();
 
   /* Close windows if opened. */
   if (window_is_loaded(nextRitualWindow)) {
