@@ -15,6 +15,7 @@ Settings settings = {
   .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109},
   .carry_time = 0,
   .current_item = -1,
+  .ended = false
 };
 
 
@@ -219,8 +220,16 @@ int abs(int val) {
 
  void open_starting_window() {
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Open starting window.");
+
+  if (settings.ended) {
+    // If routine ended //
+    ritual_end_window_create();
+    window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
+    ritual_end_window_show();
+    settings.ended = false;
+
+  } else if (settings.current_item == -1) {
   // If routine is not in progress //
-  if (settings.current_item == -1) {
 
     // If routine is not in progress //
     if (calculate_next_ritual() > time(NULL)) {

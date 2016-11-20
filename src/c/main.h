@@ -32,6 +32,7 @@ typedef struct Settings {
   int routine_length;
   int carry_time;
   int current_item;
+  bool ended;
   bool on_time;
   time_t finish_time;
 } Settings;

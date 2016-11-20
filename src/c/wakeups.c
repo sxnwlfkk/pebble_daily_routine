@@ -42,7 +42,11 @@ void wakeup_handler(WakeupId id, int32_t reason) {
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Wakeup reason: end time reached.");
     vibes_double_pulse();
     light_enable_interaction();
+    settings.ended = true;
 
+    // This should be done more elegantly, but for now, it works. //
+    // This code is called twice, one first when the handler runs and second
+    // when the app is not in the foreground at wakeup, in open_starting_window()
     ritual_end_window_create();
     window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
     ritual_end_window_show();
