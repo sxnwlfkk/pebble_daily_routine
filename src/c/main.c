@@ -23,8 +23,8 @@ Settings settings = {
 char item_names[num_of_items][30] = {"First", "Second", "Third", "Fourth", "Fifth",
                                      "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"};
 
-int item_times[num_of_items] = {6, 6, 6, 6, 6,
-                                6, 6, 6, 6, 6};
+int item_times[num_of_items] = {60, 60, 60, 60, 60,
+                                60, 60, 60, 60, 60};
 Item current_item;
 
 

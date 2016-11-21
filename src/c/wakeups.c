@@ -27,6 +27,7 @@ void wakeup_handler(WakeupId id, int32_t reason) {
     vibes_double_pulse();
     light_enable_interaction();
 
+    // Possibly these 3 lines are redundant, needs some tests to be sure //
     next_ritual_window_create();
     window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
     next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
@@ -60,8 +61,8 @@ void wakeup_handler(WakeupId id, int32_t reason) {
 
 void schedule_wakeup(int key, time_t w_time, int offset, int reason) {
   time_t wakeup_timestamp = w_time + offset;
-  int high = offset + 90;
-  int low = offset - 90;
+  int high = offset + 45;
+  int low = offset - 45;
   int cookie = reason;
   bool notify_if_missed = false;
 
@@ -101,7 +102,7 @@ void wu_check_next_start_time() {
 
     if (!wakeup_query(w_id, &wk_time)) {
       // Previously scheduled but not valid //
-      schedule_wakeup(WK_KEY1, next_time, -90, 1);
+      schedule_wakeup(WK_KEY1, next_time, -45, 1);
 
       APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Previous wakeup isn't valid, scheduling a new one:");
       log_formatted_time(wk_time);
@@ -112,7 +113,7 @@ void wu_check_next_start_time() {
     }
   } else {
       // Not scheduled, first run //
-      schedule_wakeup(WK_KEY1, next_time, -90, 1);
+      schedule_wakeup(WK_KEY1, next_time, -45, 1);
 
       // Logging //
       int w_id = persist_read_int(WK_KEY1);

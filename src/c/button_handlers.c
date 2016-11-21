@@ -18,15 +18,9 @@ static void start_window_back_button_handler(ClickRecognizerRef recognizer, void
 
 
 static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *context) {
-  // I don't know what causes this //
-  if (current_item.remaining_time < 0 && settings.current_item == -1) {
-    current_item.remaining_time = current_item.time;
-  }
-
-  if (settings.carry_time < 0 && settings.current_item == -1) {
-    settings.carry_time = 0;
-  }
-
+  // The zeroing is because the bug, which makes -14342231 from zero upon
+  // restart. //
+  current_item.remaining_time = current_item.time;
   settings.carry_time = 0;
   settings.finish_time = time(NULL) + settings.routine_length;
 
@@ -43,16 +37,13 @@ static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *c
 
 
 static void start_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
-  // I don't know what causes this //
-  if (current_item.remaining_time < 0 && settings.current_item == -1) {
-    current_item.remaining_time = current_item.time;
-  }
-
-  if (settings.carry_time < 0 && settings.current_item == -1) {
-    settings.carry_time = 0;
-  }
+  // This is also because the bug. //
+  current_item.remaining_time = current_item.time;
+  // settings.carry_time = 0;
 
   settings.carry_time = calculate_first_carry();
+
+  // Why did I made this? It's not used anywhere else in the project//
   settings.finish_time = time_start_of_today() +
                              settings.goal_time[0]*60 +
                              settings.goal_time[1]*60*60;
@@ -101,6 +92,7 @@ static void item_window_select_up_click_handler(ClickRecognizerRef recognizer, v
 static void item_window_select_down_click_handler(ClickRecognizerRef recognizer, void *context) {
   reset();
   cancel_end_wakeup();
+  wu_check_next_start_time();
   save_state();
   init();
   open_starting_window();
@@ -124,33 +116,26 @@ static void item_window_up_click_handler(ClickRecognizerRef recognizer, void *co
 
 
 static void item_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
-  // I don't know what causes this //
+  // The bug again. //
   if (current_item.remaining_time < 0 && settings.current_item == -1) {
     current_item.remaining_time = current_item.time;
   }
-
   if (settings.carry_time < 0 && settings.current_item == -1) {
     settings.carry_time = 0;
   }
 
-  // If first run, calculate carry time //
-  if (settings.current_item == -1) {
-    // settings.carry_time = calculate_first_carry();
-    //settings.carry_time = 60;
-  } else {
-    // If time left, add to carry time
-    if (current_item.remaining_time > 0) {
-      settings.carry_time += current_item.remaining_time;
+  // If time left, add to carry time
+  if (current_item.remaining_time > 0) {
+    settings.carry_time += current_item.remaining_time;
 
-      // Set remaining time in current item to 0, it will come in handy, if we go backwards
-      current_item.remaining_time = 0;
-    }
-
-    write_curr_item(settings.item_keys[settings.current_item]);
-
-    if (settings.carry_time < 0)
-      distribute_carry_loss();
+    // Set remaining time in current item to 0, it will come in handy, if we go backwards
+    current_item.remaining_time = 0;
   }
+
+  write_curr_item(settings.item_keys[settings.current_item]);
+
+  if (settings.carry_time < 0)
+    distribute_carry_loss();
 
   settings.current_item++;
   if (settings.current_item < num_of_items) {
