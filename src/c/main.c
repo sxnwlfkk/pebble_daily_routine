@@ -15,6 +15,7 @@ Settings settings = {
   .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109},
   .carry_time = 0,
   .current_item = -1,
+  .wakeup_on_start = true,
   .ended = false
 };
 

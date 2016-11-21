@@ -88,41 +88,43 @@ void schedule_wakeup(int key, time_t w_time, int offset, int reason) {
 ////////////////////////////////////////////////////////
 
 void wu_check_next_start_time() {
+  if (settings.wakeup_on_start) {
+    time_t next_time = calculate_next_ritual() - settings.routine_length;
 
-  time_t next_time = calculate_next_ritual() - settings.routine_length;
+    if (time(NULL) > next_time)
+      next_time += ONE_DAY;
 
-  if (time(NULL) > next_time)
-    next_time += ONE_DAY;
+    if (persist_exists(WK_KEY1)) {
+      // There is a record set, check if valid //
 
-  if (persist_exists(WK_KEY1)) {
-    // There is a record set, check if valid //
-
-    int w_id = persist_read_int(WK_KEY1);
-    time_t wk_time;
-
-    if (!wakeup_query(w_id, &wk_time)) {
-      // Previously scheduled but not valid //
-      schedule_wakeup(WK_KEY1, next_time, -45, 1);
-
-      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Previous wakeup isn't valid, scheduling a new one:");
-      log_formatted_time(wk_time);
-    } else {
-      // Scheduled and valid, just log it. //
-      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Previous wakeup time scheduled and valid:");
-      log_formatted_time(wk_time);
-    }
-  } else {
-      // Not scheduled, first run //
-      schedule_wakeup(WK_KEY1, next_time, -45, 1);
-
-      // Logging //
       int w_id = persist_read_int(WK_KEY1);
       time_t wk_time;
 
-      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Scheduling wakeup time first. It'll be at:");
-      wakeup_query(w_id, &wk_time);
-      log_formatted_time(wk_time);
+      if (!wakeup_query(w_id, &wk_time)) {
+        // Previously scheduled but not valid //
+        schedule_wakeup(WK_KEY1, next_time, -45, 1);
+
+        APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Previous wakeup isn't valid, scheduling a new one:");
+        log_formatted_time(wk_time);
+      } else {
+        // Scheduled and valid, just log it. //
+        APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Previous wakeup time scheduled and valid:");
+        log_formatted_time(wk_time);
+      }
+    } else {
+        // Not scheduled, first run //
+        schedule_wakeup(WK_KEY1, next_time, -45, 1);
+
+        // Logging //
+        int w_id = persist_read_int(WK_KEY1);
+        time_t wk_time;
+
+        APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Scheduling wakeup time first. It'll be at:");
+        wakeup_query(w_id, &wk_time);
+        log_formatted_time(wk_time);
+    }
   }
+
 }
 
 

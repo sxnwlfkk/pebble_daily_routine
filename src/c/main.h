@@ -33,7 +33,7 @@ typedef struct Settings {
   int carry_time;
   int current_item;
   bool ended;
-  bool on_time;
+  bool wakeup_on_start;
   time_t finish_time;
 } Settings;
 
