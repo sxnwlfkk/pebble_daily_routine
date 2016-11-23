@@ -67,7 +67,11 @@ void start_window_click_config_provider(void *context) {
   ButtonId id_up = BUTTON_ID_UP; // Up button
   ButtonId id_back = BUTTON_ID_BACK; // Back button
 
-  window_single_click_subscribe(id_down, start_window_down_click_handler);
+  if (settings.wakeup_on_start) {
+    window_single_click_subscribe(id_down, start_window_down_click_handler);
+  } else {
+    window_single_click_subscribe(id_down, start_window_up_click_handler);
+  }
   window_single_click_subscribe(id_up, start_window_up_click_handler);
   window_single_click_subscribe(id_back, start_window_back_button_handler);
 }

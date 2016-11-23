@@ -15,7 +15,7 @@ Settings settings = {
   .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109},
   .carry_time = 0,
   .current_item = -1,
-  .wakeup_on_start = true,
+  .wakeup_on_start = false,
   .ended = false
 };
 
@@ -229,7 +229,7 @@ int abs(int val) {
     ritual_end_window_show();
     settings.ended = false;
 
-  } else if (settings.current_item == -1) {
+  } else if (settings.current_item == -1 && settings.wakeup_on_start) {
   // If routine is not in progress //
 
     // If routine is not in progress //
@@ -240,8 +240,13 @@ int abs(int val) {
       next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
     }
 
-  // If routine is in progress, load state and continue, where left off //
+  } else if (settings.current_item == -1 && !settings.wakeup_on_start) {
+    ritual_start_window_create();
+    window_set_click_config_provider(ritual_startWindow, start_window_click_config_provider);
+    ritual_start_window_show();
+
   } else {
+    // If routine is in progress, load state and continue, where left off //
     ritual_item_window_create();
     window_set_click_config_provider(ritual_itemWindow, item_window_click_config_provider);
 

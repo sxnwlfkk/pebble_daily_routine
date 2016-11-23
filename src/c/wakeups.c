@@ -91,6 +91,11 @@ void wu_check_next_start_time() {
   if (settings.wakeup_on_start) {
     time_t next_time = calculate_next_ritual() - settings.routine_length;
 
+    // Don't reschedule if it's in the immediate future //
+    if ((next_time - 300) <= time(NULL)) {
+      return;
+    }
+
     if (time(NULL) > next_time)
       next_time += ONE_DAY;
 
@@ -149,7 +154,11 @@ void cancel_end_wakeup() {
   if (persist_exists(WK_KEY2)) {
     int w_id = persist_read_int(WK_KEY2);
     wakeup_cancel(w_id);
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Cancelled end wakeup.");
+    if (!wakeup_query(w_id, NULL)) {
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Cancelled end wakeup.");
+    } else{
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Couldn't cancel, wakeup is still alive.");
+    }
   } else {
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Didn't cancel end wakeup, wasn't any.");
   }
