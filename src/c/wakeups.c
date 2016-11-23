@@ -154,7 +154,11 @@ void cancel_end_wakeup() {
   if (persist_exists(WK_KEY2)) {
     int w_id = persist_read_int(WK_KEY2);
     wakeup_cancel(w_id);
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Cancelled end wakeup.");
+    if (!wakeup_query(w_id, NULL)) {
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Cancelled end wakeup.");
+    } else{
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Couldn't cancel, wakeup is still alive.");
+    }
   } else {
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Didn't cancel end wakeup, wasn't any.");
   }
