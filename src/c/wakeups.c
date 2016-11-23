@@ -147,7 +147,7 @@ void schedule_end_wakeup(time_t end_time) {
 
 void cancel_end_wakeup() {
   if (persist_exists(WK_KEY2)) {
-    int w_id = persist_read_int(WK_KEY1);
+    int w_id = persist_read_int(WK_KEY2);
     wakeup_cancel(w_id);
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Cancelled end wakeup.");
   } else {
