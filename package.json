@@ -6,7 +6,9 @@
     "pebble": {
         "displayName": "Daily Routine Test",
         "enableMultiJS": true,
-        "messageKeys": [],
+        "messageKeys": [
+          "Rutinok[3]"
+        ],
         "projectType": "native",
         "resources": {
             "media": []
