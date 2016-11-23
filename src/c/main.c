@@ -232,15 +232,13 @@ int abs(int val) {
   } else if (settings.current_item == -1 && settings.wakeup_on_start) {
   // If routine is not in progress //
 
-    // If routine is not in progress //
-    if (calculate_next_ritual() > time(NULL)) {
-
-      next_ritual_window_create();
-      window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
-      next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
-    }
+    next_ritual_window_create();
+    window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
+    next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
 
   } else if (settings.current_item == -1 && !settings.wakeup_on_start) {
+    load_curr_item(settings.item_keys[0]);
+    
     ritual_start_window_create();
     window_set_click_config_provider(ritual_startWindow, start_window_click_config_provider);
     ritual_start_window_show();
