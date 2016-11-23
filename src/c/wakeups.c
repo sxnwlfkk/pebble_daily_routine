@@ -91,6 +91,11 @@ void wu_check_next_start_time() {
   if (settings.wakeup_on_start) {
     time_t next_time = calculate_next_ritual() - settings.routine_length;
 
+    // Don't reschedule if it's in the immediate future //
+    if ((next_time - 300) <= time(NULL)) {
+      return;
+    }
+
     if (time(NULL) > next_time)
       next_time += ONE_DAY;
 
