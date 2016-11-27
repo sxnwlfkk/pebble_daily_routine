@@ -5,6 +5,7 @@
 #include "ritual_item_window.h"
 #include "button_handlers.h"
 #include "wakeups.h"
+#include "app_comm.h"
 #include "main.h"
 
 
@@ -196,6 +197,9 @@ int abs(int val) {
   wakeup_service_subscribe(wakeup_handler);
   wu_check_next_start_time();
   log_settings_dump();
+
+  // Comms handling
+  appmessage_setup();
 }
 
 
@@ -238,7 +242,7 @@ int abs(int val) {
 
   } else if (settings.current_item == -1 && !settings.wakeup_on_start) {
     load_curr_item(settings.item_keys[0]);
-    
+
     ritual_start_window_create();
     window_set_click_config_provider(ritual_startWindow, start_window_click_config_provider);
     ritual_start_window_show();

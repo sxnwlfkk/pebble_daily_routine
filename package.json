@@ -7,7 +7,8 @@
         "displayName": "Daily Routine Test",
         "enableMultiJS": true,
         "messageKeys": [
-          "Rutinok[3]"
+          "JSReady",
+          "test_int"
         ],
         "projectType": "native",
         "resources": {
