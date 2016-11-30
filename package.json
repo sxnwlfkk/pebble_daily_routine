@@ -1,28 +1,30 @@
 {
-    "author": "sxnwlfkk",
-    "dependencies": {},
-    "keywords": [],
-    "name": "Daily Routine",
-    "pebble": {
-        "displayName": "Daily Routine Test",
-        "enableMultiJS": true,
-        "messageKeys": [
-          "JSReady",
-          "test_int"
-        ],
-        "projectType": "native",
-        "resources": {
-            "media": []
-        },
-        "sdkVersion": "3",
-        "targetPlatforms": [
-            "aplite",
-            "basalt"
-        ],
-        "uuid": "6a233b0f-6a3b-49a7-8c4d-d98ce1eb235b",
-        "watchapp": {
-            "watchface": false
-        }
+  "author": "sxnwlfkk",
+  "dependencies": {
+    "pebble-clay": "^1.0.4"
+  },
+  "keywords": [],
+  "name": "Daily Routine",
+  "pebble": {
+    "displayName": "Daily Routine Test",
+    "enableMultiJS": true,
+    "messageKeys": [
+      "JSReady",
+      "test_int"
+    ],
+    "projectType": "native",
+    "resources": {
+      "media": []
     },
-    "version": "0.3.0"
+    "sdkVersion": "3",
+    "targetPlatforms": [
+      "aplite",
+      "basalt"
+    ],
+    "uuid": "6a233b0f-6a3b-49a7-8c4d-d98ce1eb235b",
+    "watchapp": {
+      "watchface": false
+    }
+  },
+  "version": "0.3.0"
 }

@@ -41,3 +41,4 @@ build/*
 *.su
 .tags*
 .tags
+node_modules
