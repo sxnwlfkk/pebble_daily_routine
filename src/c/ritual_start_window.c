@@ -4,7 +4,7 @@
 #include "wakeups.h"
 
 
-Window *ritual_startWindow;
+Window *ritual_start_window;
 TextLayer *ritual_start_text_layer;
 char first_item_name[30];
 char first_item_time_string[] = "00:00";
@@ -55,8 +55,8 @@ void ritual_start_window_unload(Window *window) {
 
 
 void ritual_start_window_create() {
-  ritual_startWindow = window_create();
-  window_set_window_handlers(ritual_startWindow, (WindowHandlers){
+  ritual_start_window = window_create();
+  window_set_window_handlers(ritual_start_window, (WindowHandlers){
     .load = ritual_start_window_load,
     .unload = ritual_start_window_unload
   });
@@ -64,10 +64,10 @@ void ritual_start_window_create() {
 
 
 void ritual_start_window_destroy() {
-  window_destroy(ritual_startWindow);
+  window_destroy(ritual_start_window);
 }
 
 
 Window *ritual_start_window_get_window() {
-  return ritual_startWindow;
+  return ritual_start_window;
 }

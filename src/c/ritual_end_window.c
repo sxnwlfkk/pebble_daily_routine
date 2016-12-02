@@ -3,7 +3,7 @@
 #include "main.h"
 
 
-Window *ritual_endWindow;
+Window *ritual_end_window;
 TextLayer *ritual_end_text_layer;
 char * end_time = "00:00 ";
 
@@ -54,8 +54,8 @@ void ritual_end_window_unload(Window *window) {
 
 
 void ritual_end_window_create() {
-  ritual_endWindow = window_create();
-  window_set_window_handlers(ritual_endWindow, (WindowHandlers){
+  ritual_end_window = window_create();
+  window_set_window_handlers(ritual_end_window, (WindowHandlers){
     .load = ritual_end_window_load,
     .unload = ritual_end_window_unload
   });
@@ -63,10 +63,10 @@ void ritual_end_window_create() {
 
 
 void ritual_end_window_destroy() {
-  window_destroy(ritual_endWindow);
+  window_destroy(ritual_end_window);
 }
 
 
 Window *ritual_end_window_get_window() {
-  return ritual_endWindow;
+  return ritual_end_window;
 }

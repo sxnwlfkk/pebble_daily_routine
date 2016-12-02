@@ -29,7 +29,7 @@ void wakeup_handler(WakeupId id, int32_t reason) {
 
     // Possibly these 3 lines are redundant, needs some tests to be sure //
     next_ritual_window_create();
-    window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
+    window_set_click_config_provider(next_ritual_window, next_ritual_window_click_config_provider);
     next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
 
   } else if (reason == 1) {
@@ -49,7 +49,7 @@ void wakeup_handler(WakeupId id, int32_t reason) {
     // This code is called twice, one first when the handler runs and second
     // when the app is not in the foreground at wakeup, in open_starting_window()
     ritual_end_window_create();
-    window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
+    window_set_click_config_provider(ritual_end_window, end_window_click_config_provider);
     ritual_end_window_show();
   }
 }

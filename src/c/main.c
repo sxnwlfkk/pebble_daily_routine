@@ -6,6 +6,7 @@
 #include "button_handlers.h"
 #include "wakeups.h"
 #include "app_comm.h"
+#include "main_window.h"
 #include "main.h"
 
 
@@ -209,16 +210,16 @@ int abs(int val) {
   wu_check_next_start_time();
 
   /* Close windows if opened. */
-  if (window_is_loaded(nextRitualWindow)) {
+  if (window_is_loaded(next_ritual_window)) {
     next_ritual_window_destroy();
   }
-  if (window_is_loaded(ritual_itemWindow)) {
+  if (window_is_loaded(ritual_item_window)) {
     ritual_item_window_destroy();
   }
-  if (window_is_loaded(ritual_startWindow)) {
+  if (window_is_loaded(ritual_start_window)) {
     ritual_start_window_destroy();
   }
-  if (window_is_loaded(ritual_endWindow)) {
+  if (window_is_loaded(ritual_end_window)) {
     ritual_end_window_destroy();
   }
 }
@@ -229,7 +230,7 @@ int abs(int val) {
   if (settings.ended) {
     // If routine ended //
     ritual_end_window_create();
-    window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
+    window_set_click_config_provider(ritual_end_window, end_window_click_config_provider);
     ritual_end_window_show();
     settings.ended = false;
 
@@ -237,20 +238,20 @@ int abs(int val) {
   // If routine is not in progress //
 
     next_ritual_window_create();
-    window_set_click_config_provider(nextRitualWindow, next_ritual_window_click_config_provider);
+    window_set_click_config_provider(next_ritual_window, next_ritual_window_click_config_provider);
     next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
 
   } else if (settings.current_item == -1 && !settings.wakeup_on_start) {
     load_curr_item(settings.item_keys[0]);
 
     ritual_start_window_create();
-    window_set_click_config_provider(ritual_startWindow, start_window_click_config_provider);
+    window_set_click_config_provider(ritual_start_window, start_window_click_config_provider);
     ritual_start_window_show();
 
   } else {
     // If routine is in progress, load state and continue, where left off //
     ritual_item_window_create();
-    window_set_click_config_provider(ritual_itemWindow, item_window_click_config_provider);
+    window_set_click_config_provider(ritual_item_window, item_window_click_config_provider);
 
     // Check how much time elapsed since the closing of the app //
     // If there is remaining time //

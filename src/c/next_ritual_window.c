@@ -3,7 +3,7 @@
 #include "main.h"
 
 
-Window *nextRitualWindow;
+Window *next_ritual_window;
 TextLayer *nextRitualText, *next_ritual_countdown_text_layer;
 time_t wakeup_timestamp = 0;
 time_t next_ritual_time;
@@ -86,8 +86,8 @@ void next_ritual_window_unload(Window *window) {
 
 
 void next_ritual_window_create() {
-  nextRitualWindow = window_create();
-  window_set_window_handlers(nextRitualWindow, (WindowHandlers){
+  next_ritual_window = window_create();
+  window_set_window_handlers(next_ritual_window, (WindowHandlers){
     .load = next_ritual_window_load,
     .unload = next_ritual_window_unload
   });
@@ -95,10 +95,10 @@ void next_ritual_window_create() {
 
 
 void next_ritual_window_destroy() {
-  window_destroy(nextRitualWindow);
+  window_destroy(next_ritual_window);
 }
 
 
 Window *next_ritual_window_get_window() {
-  return nextRitualWindow;
+  return next_ritual_window;
 }

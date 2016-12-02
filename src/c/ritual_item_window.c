@@ -5,7 +5,7 @@
 #include "main.h"
 
 
-Window *ritual_itemWindow;
+Window *ritual_item_window;
 TextLayer *ritual_item_text_layer;
 TextLayer *ritual_carry_text_layer;
 int half_time;
@@ -185,7 +185,7 @@ void ritual_item_window_load(Window *window) {
 void ritual_item_window_unload(Window *window) {
   text_layer_destroy(ritual_item_text_layer);
   text_layer_destroy(ritual_carry_text_layer);
-  ritual_itemWindow = NULL;
+  ritual_item_window = NULL;
 }
 
 
@@ -196,8 +196,8 @@ void ritual_item_window_disappear(Window *window) {
 
 
 void ritual_item_window_create() {
-  ritual_itemWindow = window_create();
-  window_set_window_handlers(ritual_itemWindow, (WindowHandlers){
+  ritual_item_window = window_create();
+  window_set_window_handlers(ritual_item_window, (WindowHandlers){
     .load = ritual_item_window_load,
     .unload = ritual_item_window_unload,
     .disappear = ritual_item_window_disappear
@@ -206,10 +206,10 @@ void ritual_item_window_create() {
 
 
 void ritual_item_window_destroy() {
-  window_destroy(ritual_itemWindow);
+  window_destroy(ritual_item_window);
 }
 
 
 Window *ritual_item_window_get_window() {
-  return ritual_itemWindow;
+  return ritual_item_window;
 }

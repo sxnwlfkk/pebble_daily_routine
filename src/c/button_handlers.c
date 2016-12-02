@@ -31,7 +31,7 @@ static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *c
   schedule_end_wakeup(time(NULL) + settings.routine_length);
 
   ritual_item_window_create();
-  window_set_click_config_provider(ritual_itemWindow, item_window_click_config_provider);
+  window_set_click_config_provider(ritual_item_window, item_window_click_config_provider);
   ritual_item_window_show();
 }
 
@@ -57,7 +57,7 @@ static void start_window_down_click_handler(ClickRecognizerRef recognizer, void 
   schedule_end_wakeup(calculate_next_ritual());
 
   ritual_item_window_create();
-  window_set_click_config_provider(ritual_itemWindow, item_window_click_config_provider);
+  window_set_click_config_provider(ritual_item_window, item_window_click_config_provider);
   ritual_item_window_show();
 }
 
@@ -114,7 +114,7 @@ static void item_window_up_click_handler(ClickRecognizerRef recognizer, void *co
   load_curr_item(settings.item_keys[settings.current_item]);
 
   ritual_item_window_create();
-  window_set_click_config_provider(ritual_itemWindow, item_window_click_config_provider);
+  window_set_click_config_provider(ritual_item_window, item_window_click_config_provider);
   ritual_item_window_show();
 }
 
@@ -146,13 +146,13 @@ static void item_window_down_click_handler(ClickRecognizerRef recognizer, void *
     load_curr_item(settings.item_keys[settings.current_item]);
 
     ritual_item_window_create();
-    window_set_click_config_provider(ritual_itemWindow, item_window_click_config_provider);
+    window_set_click_config_provider(ritual_item_window, item_window_click_config_provider);
     ritual_item_window_show();
  } else {
    // Set up end window, reset all progress data
    cancel_end_wakeup();
    ritual_end_window_create();
-   window_set_click_config_provider(ritual_endWindow, end_window_click_config_provider);
+   window_set_click_config_provider(ritual_end_window, end_window_click_config_provider);
    ritual_end_window_show();
   }
 }
@@ -183,7 +183,7 @@ static void next_ritual_window_down_click_handler(ClickRecognizerRef recognizer,
   load_curr_item(settings.item_keys[0]);
 
   ritual_start_window_create();
-  window_set_click_config_provider(ritual_startWindow, start_window_click_config_provider);
+  window_set_click_config_provider(ritual_start_window, start_window_click_config_provider);
   ritual_start_window_show();
 }
 
