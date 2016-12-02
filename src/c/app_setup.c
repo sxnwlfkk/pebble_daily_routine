@@ -16,15 +16,15 @@
   int sum_time = 0; // Routine length
 
   // Construct the items and write to memory //
-  for (int i = 0; i<num_of_items; i++) {
+  for (int i = 0; i<routine.num_of_items; i++) {
     sum_time += item_times[i];
     strncpy(current_item.name, item_names[i], sizeof(current_item.name));
     // Copy minutes and seconds. Should be converted to seconds only //
     current_item.time = item_times[i];
     current_item.remaining_time = current_item.time;
-    write_curr_item(settings.item_keys[i]);
+    write_curr_item(routine.item_keys[i]);
   }
-  settings.routine_length = sum_time;
+  routine.routine_length = sum_time;
 }
 
 
@@ -41,10 +41,10 @@
   if (persist_exists(SETTINGS_KEY)) {
     setup();
     load_state();
-    if (settings.current_item == -1) {
-      load_curr_item(settings.item_keys[0]);
+    if (routine.current_item == -1) {
+      load_curr_item(routine.item_keys[0]);
     } else {
-      load_curr_item(settings.item_keys[settings.current_item]);
+      load_curr_item(routine.item_keys[routine.current_item]);
     }
   } else {
     first_setup();
@@ -74,7 +74,7 @@
 
  void deinit(void){
   save_state();
-  write_curr_item(settings.item_keys[settings.current_item]);
+  write_curr_item(routine.item_keys[routine.current_item]);
   wu_check_next_start_time();
 
   /* Close windows if opened. */
@@ -96,13 +96,13 @@
 // Call this when the ritual ends //
  void reset() {
   // Change current_item carry_time, remaining_times to default
-  for (int i=0; i<num_of_items; i++) {
-    load_curr_item(settings.item_keys[i]);
+  for (int i=0; i<routine.num_of_items; i++) {
+    load_curr_item(routine.item_keys[i]);
     current_item.remaining_time = current_item.time;
     current_item.carry_timer_timestamp = 0;
     current_item.timer_timestamp = 0;
-    write_curr_item(settings.item_keys[i]);
+    write_curr_item(routine.item_keys[i]);
   }
-  settings.carry_time = 0;
-  settings.current_item = -1;
+  routine.carry_time = 0;
+  routine.current_item = -1;
 }

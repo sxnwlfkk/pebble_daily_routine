@@ -21,7 +21,7 @@ int expon(int x, int y) {
 ////////////////////
 
 void wakeup_handler(WakeupId id, int32_t reason) {
-  if (reason == 1 && settings.current_item == -1) {
+  if (reason == 1 && routine.current_item == -1) {
     // Wakeup due to next ritual, and ritual isn't started //
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Wakeup reason: app closed, start time.");
     vibes_double_pulse();
@@ -30,7 +30,7 @@ void wakeup_handler(WakeupId id, int32_t reason) {
     // Possibly these 3 lines are redundant, needs some tests to be sure //
     next_ritual_window_create();
     window_set_click_config_provider(next_ritual_window, next_ritual_window_click_config_provider);
-    next_ritual_window_show(calculate_next_ritual() - settings.routine_length);
+    next_ritual_window_show(calculate_next_ritual() - routine.routine_length);
 
   } else if (reason == 1) {
     // Wakeup due to next ritual, but the ritual is started //
@@ -43,7 +43,7 @@ void wakeup_handler(WakeupId id, int32_t reason) {
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Wakeup reason: end time reached.");
     vibes_double_pulse();
     light_enable_interaction();
-    settings.ended = true;
+    routine.ended = true;
 
     // This should be done more elegantly, but for now, it works. //
     // This code is called twice, one first when the handler runs and second
@@ -88,8 +88,8 @@ void schedule_wakeup(int key, time_t w_time, int offset, int reason) {
 ////////////////////////////////////////////////////////
 
 void wu_check_next_start_time() {
-  if (settings.wakeup_on_start) {
-    time_t next_time = calculate_next_ritual() - settings.routine_length;
+  if (routine.wakeup_on_start) {
+    time_t next_time = calculate_next_ritual() - routine.routine_length;
 
     // Don't reschedule if it's in the immediate future //
     if ((next_time - 300) <= time(NULL)) {

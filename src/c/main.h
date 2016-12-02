@@ -2,17 +2,18 @@
 #include <pebble.h>
 
 
-#define SETTINGS_KEY 99
+#define ITEM_PER_ROUTINE 30
 #define ONE_DAY 86400
-#define WK_KEY1 90
-#define WK_KEY2 91
-#define WK_KEY3 92
-#define WK_KEY4 93
-#define WK_KEY5 94
-#define WK_KEY6 95
-#define WK_KEY7 96
-#define WK_KEY8 97
-#define num_of_items 10
+
+#define SETTINGS_KEY 310
+#define WK_KEY1 311
+#define WK_KEY2 312
+#define WK_KEY3 313
+#define WK_KEY4 314
+#define WK_KEY5 315
+#define WK_KEY6 316
+#define WK_KEY7 317
+#define WK_KEY8 318
 
 
 typedef struct Item {
@@ -25,22 +26,23 @@ typedef struct Item {
 } Item;
 
 
-typedef struct Settings {
+typedef struct Routine {
+  char routine_name[20];
+  int num_of_items;
   int weekdays[7];
+  bool wakeup_on_start;
   int goal_time[2];
-  int item_keys[num_of_items];
   int routine_length;
   int carry_time;
   int current_item;
   bool ended;
-  bool wakeup_on_start;
   time_t finish_time;
-} Settings;
+} Routine;
 
-Settings settings;
+Routine routine;
 Item current_item;
-char item_names[num_of_items][30];
-int item_times[num_of_items];
+char item_names[10][30];
+int item_times[10];
 
 
 void open_starting_window();

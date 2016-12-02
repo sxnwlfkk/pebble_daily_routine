@@ -22,14 +22,14 @@ static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *c
   // The zeroing is because the bug, which makes -14342231 from zero upon
   // restart. //
   current_item.remaining_time = current_item.time;
-  settings.carry_time = 0;
-  settings.finish_time = time(NULL) + settings.routine_length;
+  routine.carry_time = 0;
+  routine.finish_time = time(NULL) + routine.routine_length;
 
-  settings.current_item++;
-  load_curr_item(settings.item_keys[settings.current_item]);
+  routine.current_item++;
+  load_curr_item(routine.item_keys[routine.current_item]);
 
   // Schedule wakeup at routine length from button press
-  schedule_end_wakeup(time(NULL) + settings.routine_length);
+  schedule_end_wakeup(time(NULL) + routine.routine_length);
 
   ritual_item_window_create();
   window_set_click_config_provider(ritual_item_window, item_window_click_config_provider);
@@ -40,19 +40,19 @@ static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *c
 static void start_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
   // This is also because the bug. //
   current_item.remaining_time = current_item.time;
-  // settings.carry_time = 0;
+  // routine.carry_time = 0;
 
-  settings.carry_time = calculate_first_carry();
+  routine.carry_time = calculate_first_carry();
 
   // Why did I made this? It's not used anywhere else in the project//
-  settings.finish_time = time_start_of_today() +
-                             settings.goal_time[0]*60 +
-                             settings.goal_time[1]*60*60;
-  if (settings.carry_time < 0)
+  routine.finish_time = time_start_of_today() +
+                             routine.goal_time[0]*60 +
+                             routine.goal_time[1]*60*60;
+  if (routine.carry_time < 0)
     distribute_carry_loss();
 
-  settings.current_item++;
-  load_curr_item(settings.item_keys[settings.current_item]);
+  routine.current_item++;
+  load_curr_item(routine.item_keys[routine.current_item]);
 
   // Schedule wakeup at designated end point
   schedule_end_wakeup(calculate_next_ritual());
@@ -68,7 +68,7 @@ void start_window_click_config_provider(void *context) {
   ButtonId id_up = BUTTON_ID_UP; // Up button
   ButtonId id_back = BUTTON_ID_BACK; // Back button
 
-  if (settings.wakeup_on_start) {
+  if (routine.wakeup_on_start) {
     window_single_click_subscribe(id_down, start_window_down_click_handler);
   } else {
     window_single_click_subscribe(id_down, start_window_up_click_handler);
@@ -105,14 +105,14 @@ static void item_window_select_down_click_handler(ClickRecognizerRef recognizer,
 
 
 static void item_window_up_click_handler(ClickRecognizerRef recognizer, void *context) {
-  if (settings.current_item <= 0)
+  if (routine.current_item <= 0)
     return;
 
-  write_curr_item(settings.item_keys[settings.current_item]);
+  write_curr_item(routine.item_keys[routine.current_item]);
 
-  settings.current_item -= 1;
+  routine.current_item -= 1;
 
-  load_curr_item(settings.item_keys[settings.current_item]);
+  load_curr_item(routine.item_keys[routine.current_item]);
 
   ritual_item_window_create();
   window_set_click_config_provider(ritual_item_window, item_window_click_config_provider);
@@ -122,29 +122,29 @@ static void item_window_up_click_handler(ClickRecognizerRef recognizer, void *co
 
 static void item_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
   // The bug again. //
-  if (current_item.remaining_time < 0 && settings.current_item == -1) {
+  if (current_item.remaining_time < 0 && routine.current_item == -1) {
     current_item.remaining_time = current_item.time;
   }
-  if (settings.carry_time < 0 && settings.current_item == -1) {
-    settings.carry_time = 0;
+  if (routine.carry_time < 0 && routine.current_item == -1) {
+    routine.carry_time = 0;
   }
 
   // If time left, add to carry time
   if (current_item.remaining_time > 0) {
-    settings.carry_time += current_item.remaining_time;
+    routine.carry_time += current_item.remaining_time;
 
     // Set remaining time in current item to 0, it will come in handy, if we go backwards
     current_item.remaining_time = 0;
   }
 
-  write_curr_item(settings.item_keys[settings.current_item]);
+  write_curr_item(routine.item_keys[routine.current_item]);
 
-  if (settings.carry_time < 0)
+  if (routine.carry_time < 0)
     distribute_carry_loss();
 
-  settings.current_item++;
-  if (settings.current_item < num_of_items) {
-    load_curr_item(settings.item_keys[settings.current_item]);
+  routine.current_item++;
+  if (routine.current_item < routine.num_of_items) {
+    load_curr_item(routine.item_keys[routine.current_item]);
 
     ritual_item_window_create();
     window_set_click_config_provider(ritual_item_window, item_window_click_config_provider);
@@ -181,7 +181,7 @@ void item_window_click_config_provider(void *context) {
 
 // Next ritual window down button handler//
 static void next_ritual_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
-  load_curr_item(settings.item_keys[0]);
+  load_curr_item(routine.item_keys[0]);
 
   ritual_start_window_create();
   window_set_click_config_provider(ritual_start_window, start_window_click_config_provider);

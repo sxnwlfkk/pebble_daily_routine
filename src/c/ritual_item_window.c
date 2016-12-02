@@ -50,16 +50,16 @@ void ritual_item_window_show(){
 
   // Copy carry_time string //
   // If positive //
-  if (settings.carry_time >= 0) {
-    if (settings.carry_time % 60 > 9) {
-      snprintf(carry_time_string, sizeof(carry_time_string), "%d:%d", settings.carry_time/60, settings.carry_time%60);
+  if (routine.carry_time >= 0) {
+    if (routine.carry_time % 60 > 9) {
+      snprintf(carry_time_string, sizeof(carry_time_string), "%d:%d", routine.carry_time/60, routine.carry_time%60);
     } else {
-      snprintf(carry_time_string, sizeof(carry_time_string), "%d:0%d", settings.carry_time/60, settings.carry_time%60);
+      snprintf(carry_time_string, sizeof(carry_time_string), "%d:0%d", routine.carry_time/60, routine.carry_time%60);
     }
   // If negative //
   } else {
-    int minutes = ((-1) * settings.carry_time) / 60;
-    int seconds = ((-1) * settings.carry_time) % 60;
+    int minutes = ((-1) * routine.carry_time) / 60;
+    int seconds = ((-1) * routine.carry_time) % 60;
     if (seconds > 9) {
       snprintf(carry_time_string, sizeof(carry_time_string), "-%d:%d", minutes, seconds);
     } else {
@@ -68,7 +68,7 @@ void ritual_item_window_show(){
   }
 
   // Copy X/Y item string //
-  snprintf(item_out_of_max, sizeof(item_out_of_max), "[%d/%d]", settings.current_item+1, num_of_items);
+  snprintf(item_out_of_max, sizeof(item_out_of_max), "[%d/%d]", routine.current_item+1, routine.num_of_items);
 
   window_stack_push(ritual_item_window_get_window(), true);
 }
@@ -108,30 +108,30 @@ static void timer_handler(void *data) {
   } else if (current_item.remaining_time == 0 && current_item.pre_carry_stage) {
       vibes_double_pulse();
       light_enable_interaction();
-      current_item.carry_timer_timestamp = make_time_from_int(settings.carry_time);
+      current_item.carry_timer_timestamp = make_time_from_int(routine.carry_time);
       current_item.pre_carry_stage = false;
 
   // Countdown from carry time //
   } else {
-    settings.carry_time = (int)(current_item.carry_timer_timestamp - time(NULL));
+    routine.carry_time = (int)(current_item.carry_timer_timestamp - time(NULL));
 
-    if (settings.carry_time == 0 && !vibrated) {
+    if (routine.carry_time == 0 && !vibrated) {
       vibes_double_pulse();
       light_enable_interaction();
       vibrated = true;
     }
 
-    if (settings.carry_time < 0) {
-      int minutes = ((-1) * settings.carry_time) / 60;
-      int seconds = ((-1) * settings.carry_time) % 60;
+    if (routine.carry_time < 0) {
+      int minutes = ((-1) * routine.carry_time) / 60;
+      int seconds = ((-1) * routine.carry_time) % 60;
       if (seconds < 10) {
         snprintf(carry_time_string, sizeof(carry_time_string), "-%d:0%d", minutes, seconds);
       } else {
         snprintf(carry_time_string, sizeof(carry_time_string), "-%d:%d", minutes, seconds);
       }
     } else {
-      int minutes = settings.carry_time / 60;
-      int seconds = settings.carry_time % 60;
+      int minutes = routine.carry_time / 60;
+      int seconds = routine.carry_time % 60;
       if (seconds < 10) {
         snprintf(carry_time_string, sizeof(carry_time_string), "%d:0%d", minutes, seconds);
       } else {
@@ -191,7 +191,7 @@ void ritual_item_window_unload(Window *window) {
 
 void ritual_item_window_disappear(Window *window) {
   save_state();
-  write_curr_item(settings.item_keys[settings.current_item]);
+  write_curr_item(routine.item_keys[routine.current_item]);
 }
 
 
