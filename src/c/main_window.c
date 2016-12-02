@@ -12,7 +12,7 @@ uint16_t menu_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
 }
 
 uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
-
+  return 1;
 }
 
 int16_t menu_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {

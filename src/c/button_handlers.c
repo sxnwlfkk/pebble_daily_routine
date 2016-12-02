@@ -5,6 +5,7 @@
 #include "ritual_item_window.h"
 #include "ritual_end_window.h"
 #include "button_handlers.h"
+#include "app_setup.h"
 #include "wakeups.h"
 
 

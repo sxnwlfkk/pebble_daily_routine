@@ -45,12 +45,6 @@ int item_times[num_of_items];
 
 void open_starting_window();
 
-void init();
-void deinit();
-void first_setup();
-void setup();
-void reset();
-
 
 time_t calculate_next_ritual();
 void distribute_carry_loss();
