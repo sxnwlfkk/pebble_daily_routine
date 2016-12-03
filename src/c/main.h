@@ -15,6 +15,18 @@
 #define WK_KEY7 317
 #define WK_KEY8 318
 
+typedef struct MenuData {
+  char routine_name[20];
+  int routine_length;
+  goal_time;
+} MenuData;
+
+typedef struct AppSettings {
+  int no_of_rutines;
+  int set_routines[10];
+  MenuData data_list[10];
+  int current_routine;
+} AppSettings;
 
 typedef struct Item {
   char name[20];
