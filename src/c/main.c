@@ -11,25 +11,11 @@
 #include "main.h"
 
 
-// Settings //
-Routine routine = {
-  .weekdays = {1, 1, 1, 1, 1, 0, 0},
-  .goal_time = {10,47},
-  .item_keys = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109},
-  .carry_time = 0,
-  .current_item = -1,
-  .wakeup_on_start = false,
-  .ended = false
-};
-
-
-// Items //
-char item_names[routine.num_of_items][30] = {"First", "Second", "Third", "Fourth", "Fifth",
-                                     "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"};
-
-int item_times[routine.num_of_items] = {60, 60, 60, 60, 60,
-                                60, 60, 60, 60, 60};
+/* Settings */
+AppSettings app_settings;
+Routine routine;
 Item current_item;
+MenuData menu_data;
 
 
 // Logging //
@@ -67,11 +53,17 @@ void log_settings_dump() {
 }
 
  void save_state() {
-  persist_write_data(SETTINGS_KEY, &routine, sizeof(routine));
+  persist_write_data(SETTINGS_KEY, &app_settings, sizeof(app_settings));
+  if (app_settings.current_routine != -1) {
+    persist_write_data(app_settings.current_routine, &routine, sizeof(routine));
+  }
 }
 
  void load_state() {
-  persist_read_data(SETTINGS_KEY, &routine, sizeof(routine));
+  persist_read_data(SETTINGS_KEY, &app_settings, sizeof(app_settings));
+  if (app_settings.current_routine != -1) {
+    persist_read_data(app_settings.current_routine, &routine, sizeof(routine));
+  }
 }
 
 
@@ -130,7 +122,7 @@ int abs(int val) {
 
 /* Calculates the persistent storage key */
 uint16_t current_item_key() {
-  return 10 + app_settings.curent_routine * 30 + routine.current_item
+  return 10 + app_settings.current_routine * 30 + routine.current_item;
 }
 
 

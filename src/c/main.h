@@ -18,7 +18,7 @@
 typedef struct MenuData {
   char routine_name[20];
   int routine_length;
-  goal_time;
+  int start_time;
 } MenuData;
 
 typedef struct AppSettings {
@@ -37,10 +37,10 @@ typedef struct Item {
   time_t carry_timer_timestamp;
 } Item;
 
-
 typedef struct Routine {
   char routine_name[20];
   int num_of_items;
+  int item_keys[30];
   int weekdays[7];
   bool wakeup_on_start;
   int goal_time[2];
@@ -53,6 +53,8 @@ typedef struct Routine {
 
 Routine routine;
 Item current_item;
+AppSettings app_settings;
+MenuData menu_data;
 char item_names[10][30];
 int item_times[10];
 

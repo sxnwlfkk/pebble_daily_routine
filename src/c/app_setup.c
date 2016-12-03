@@ -27,23 +27,14 @@
   routine.routine_length = sum_time;
 }
 
-
-// Construct item_array to load from memory into //
- void setup() {
-  strncpy(current_item.name, item_names[0], sizeof(current_item.name));
-    current_item.time = item_times[0];
-  }
-
-
  void init(void){
   /* If there are settings in memory, load them. If there aren't,
   it's the first run. Run setup, write it to memory then load. */
   if (persist_exists(SETTINGS_KEY)) {
-    setup();
     load_state();
-    if (routine.current_item == -1) {
+    if (app_settings.current_routine != -1 && routine.current_item == -1) {
       load_curr_item(routine.item_keys[0]);
-    } else {
+    } else if (app_settings.current_routine != -1) {
       load_curr_item(routine.item_keys[routine.current_item]);
     }
   } else {
@@ -51,6 +42,8 @@
     save_state();
   }
 
+  /* Comms handling */
+  appmessage_setup();
 
   // Wakueup handling //
 
@@ -67,8 +60,6 @@
   wu_check_next_start_time();
   log_settings_dump();
 
-  // Comms handling
-  appmessage_setup();
 }
 
 
