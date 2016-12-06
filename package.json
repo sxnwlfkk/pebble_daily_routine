@@ -19,7 +19,7 @@
       "Goal_Time[2]",
       "Item_Names[30]",
       "Item_Times[30]",
-      "Weekdays[7]",
+      "Weekdays[7]"
     ],
     "projectType": "native",
     "resources": {

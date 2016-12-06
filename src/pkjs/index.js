@@ -10,8 +10,6 @@ var routine_dict = {
   'Routine_Name': "Test Routine",
   'Routine_Item_No': 5,
   'Wakeup_On_Start': 0,
-  'Item_Names': ["First", "Second", "Third", "Fourth", "Fifth"],
-  'Item_Times': [60, 60, 60, 60, 60]
 }
 
 
@@ -20,8 +18,8 @@ Pebble.addEventListener('ready', function() {
   console.log('PebbleKit JS ready!');
 
   // Update s_js_ready on watch
-  Pebble.sendAppMessage({'JSReady': 1});
+  // Pebble.sendAppMessage({'JSReady': 1});
   // Sending test dict
   Pebble.sendAppMessage(routine_dict);
-  console.log('Sending test dictionary.');
+  console.log('Sent test dictionary.');
 });

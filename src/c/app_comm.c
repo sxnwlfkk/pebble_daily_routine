@@ -14,11 +14,16 @@ void inbox_recieved_callback(DictionaryIterator *iter, void *context) {
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "JSReady set to true.");
   }
 
-  // Does this message contain a temperature value?
+/*
   Tuple *test_int_tuple = dict_find(iter, MESSAGE_KEY_test_int);
   if(test_int_tuple) {
     // This value was stored as JS Number, which is stored here as int32_t
     int32_t test_int = test_int_tuple->value->int32;
+  } */
+
+  Tuple *test_int_operation = dict_find(iter, MESSAGE_KEY_Operation);
+  if (test_int_operation) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Operation is set to one");
   }
 }
 
