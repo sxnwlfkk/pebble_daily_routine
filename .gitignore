@@ -43,3 +43,4 @@ build/*
 .tags
 node_modules
 work.org
+.#work.org
