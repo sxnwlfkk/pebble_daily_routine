@@ -14,10 +14,12 @@ char ** make_name_array(int len, char *namestr) {
       APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Malloc failed at make_name_array, **new_array[%d].", i);
     }
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Trying to copy to new arrays.");
-    while ((new_array[i][j] = namestr[j]) != '|' || new_array[i][j] != '\0') {
+    int k = 0;
+    while ((new_array[i][k] = namestr[j]) != '|' && new_array[i][k] != '\0') {
       j++;
+      k++;
     }
-    new_array[i][j] = '\0';
+    new_array[i][k] = '\0';
     j++;
   }
   return new_array;
