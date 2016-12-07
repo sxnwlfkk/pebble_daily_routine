@@ -10,16 +10,14 @@
     "enableMultiJS": true,
     "messageKeys": [
       "JSReady",
-      "Sequence[10]",
+      "Sequence",
       "Operation",
       "Routine_Id",
       "Routine_Name",
       "Routine_Item_No",
       "Wakeup_On_Start",
-      "Goal_Time[2]",
-      "Item_Names[30]",
-      "Item_Times[30]",
-      "Weekdays[7]"
+      "Goal_Time",
+      "Weekdays"
     ],
     "projectType": "native",
     "resources": {

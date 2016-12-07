@@ -2,6 +2,32 @@
 
 bool s_js_ready;
 
+char ** make_name_array(int len, char *namestr) {
+  char **new_array;
+  if ((new_array = malloc(len * sizeof(char*))) == NULL) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Malloc failed at make_name_array, **new_array.");
+  }
+
+  int j = 0;
+  for (int i = 0; i < len; i++) {
+    if ((new_array[i] = malloc(30 * sizeof(char))) == NULL) {
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Malloc failed at make_name_array, **new_array[%d].", i);
+    }
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Trying to copy to new arrays.");
+    while ((new_array[i][j] = namestr[j]) != '|' || new_array[i][j] != '\0') {
+      j++;
+    }
+    new_array[i][j] = '\0';
+    j++;
+  }
+  return new_array;
+}
+
+void destroy_name_array(char ** namearray) {
+  free(namearray);
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Memory freed.");
+}
+
 
 void inbox_recieved_callback(DictionaryIterator *iter, void *context) {
   // A new message has been successfully received
@@ -21,9 +47,23 @@ void inbox_recieved_callback(DictionaryIterator *iter, void *context) {
     int32_t test_int = test_int_tuple->value->int32;
   } */
 
-  Tuple *test_int_operation = dict_find(iter, MESSAGE_KEY_Operation);
-  if (test_int_operation) {
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Operation is set to one");
+  int item_no = 0;
+  Tuple *test_int_item_no = dict_find(iter, MESSAGE_KEY_Routine_Item_No);
+  if (test_int_item_no) {
+    item_no = test_int_item_no->value->int32;
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine item number is %d", item_no);
+  }
+
+  char namestr[256];
+  char ** name_array;
+  Tuple *test_name_string = dict_find(iter, MESSAGE_KEY_Routine_Name);
+  if (test_name_string) {
+    strcpy(namestr, test_name_string->value->cstring);
+    name_array = make_name_array(item_no, namestr);
+    for (int i = 0; i < item_no; i++) {
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine item name is %s", name_array[i]);
+    }
+    destroy_name_array(name_array);
   }
 }
 

@@ -9,6 +9,7 @@ var routine_dict = {
   'Routine_Id': 0,
   'Routine_Name': "Test Routine",
   'Routine_Item_No': 5,
+  'Routine_Name': "First|Second|Third|Fourth|Fifth",
   'Wakeup_On_Start': 0,
 }
 
