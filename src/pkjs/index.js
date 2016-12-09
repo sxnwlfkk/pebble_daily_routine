@@ -7,9 +7,10 @@ var clay = new Clay(clayConfig);
 var routine_dict = {
   'Operation': 1,
   'Routine_Id': 0,
-  'Routine_Name': "Test Routine",
+  'Routine_Title': "Test Routine",
   'Routine_Item_No': 5,
-  'Routine_Name': "First|Second|Third|Fourth|Fifth",
+  'Routine_Names': "First|Second|Third|Fourth|Fifth",
+  'Routine_Times': "60|120|360|20|45",
   'Wakeup_On_Start': 0,
 }
 

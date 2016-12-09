@@ -52,17 +52,27 @@ void log_settings_dump() {
   persist_read_data(key, &current_item, sizeof(current_item));
 }
 
+void load_routine(int key) {
+  persist_read_data(key, &routine, sizeof(routine));
+}
+
+void save_routine(int key) {
+  persist_write_data(key, &routine, sizeof(routine));
+}
+
  void save_state() {
   persist_write_data(SETTINGS_KEY, &app_settings, sizeof(app_settings));
   if (app_settings.current_routine != -1) {
-    persist_write_data(app_settings.current_routine, &routine, sizeof(routine));
+    save_routine(app_settings.current_routine);
+    if (routine.current_item != -1)
+      write_curr_item(routine.item_keys[routine.current_item]);
   }
 }
 
  void load_state() {
   persist_read_data(SETTINGS_KEY, &app_settings, sizeof(app_settings));
   if (app_settings.current_routine != -1) {
-    persist_read_data(app_settings.current_routine, &routine, sizeof(routine));
+    load_routine(app_settings.current_routine);
   }
 }
 
@@ -107,14 +117,11 @@ void distribute_carry_loss() {
 // Calculated absolute value //
 
 int abs(int val) {
-  if (val < 0) {
-    return (-1) * val;
-  }
-  return val;
+  return (val<0) ? (-1)*val : val;
 }
 
 
-/* Calculates how much earlier of late the routine is started. */
+/* Calculates how much earlier or late the routine is started. */
  int calculate_first_carry() {
   int carry = (int)(calculate_next_ritual() - time(NULL)) - routine.routine_length;
   return carry;
@@ -124,9 +131,6 @@ int abs(int val) {
 uint16_t current_item_key() {
   return 10 + app_settings.current_routine * 30 + routine.current_item;
 }
-
-
-
 
  void open_starting_window() {
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Open starting window.");
@@ -177,7 +181,6 @@ uint16_t current_item_key() {
     ritual_item_window_show();
   }
 }
-
 
 int main() {
   init();

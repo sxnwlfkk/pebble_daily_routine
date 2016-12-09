@@ -25,29 +25,49 @@ char ** make_name_array(int len, char *namestr) {
   return new_array;
 }
 
+int * make_num_array(int len, char *timestr) {
+  int *new_times;
+  if ((new_times = malloc(len * sizeof(int))) == NULL) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Malloc failed at make_time_array, **new_times.");
+  }
+
+  int j = 0;
+  for (int i = 0; i < len; i++) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Trying to copy to new arrays.");
+    char curr_time[10] = "1";
+    int k = 0;
+    while ((curr_time[k] = timestr[j]) != '|' && curr_time[k] != '\0') {
+      j++;
+      k++;
+    }
+    curr_time[k] = '\0';
+    j++;
+
+    new_times[i] = atoi(curr_time);
+  }
+  return new_times;
+}
+
 void destroy_name_array(char ** namearray) {
   free(namearray);
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Memory freed.");
 }
 
+void destroy_array(char * array) {
+  free(array);
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Memory freed.");
+}
 
 void inbox_recieved_callback(DictionaryIterator *iter, void *context) {
-  // A new message has been successfully received
+  /* A new message has been successfully received */
 
-  // Recieving JSReady message
+  /* Recieving JSReady message */
   Tuple *ready_tuple = dict_find(iter, MESSAGE_KEY_JSReady);
   if(ready_tuple) {
-    // PebbleKit JS is ready! Safe to send messages
+    /* PebbleKit JS is ready! Safe to send messages */
     s_js_ready = true;
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "JSReady set to true.");
   }
-
-/*
-  Tuple *test_int_tuple = dict_find(iter, MESSAGE_KEY_test_int);
-  if(test_int_tuple) {
-    // This value was stored as JS Number, which is stored here as int32_t
-    int32_t test_int = test_int_tuple->value->int32;
-  } */
 
   int item_no = 0;
   Tuple *test_int_item_no = dict_find(iter, MESSAGE_KEY_Routine_Item_No);
@@ -58,7 +78,7 @@ void inbox_recieved_callback(DictionaryIterator *iter, void *context) {
 
   char namestr[256];
   char ** name_array;
-  Tuple *test_name_string = dict_find(iter, MESSAGE_KEY_Routine_Name);
+  Tuple *test_name_string = dict_find(iter, MESSAGE_KEY_Routine_Names);
   if (test_name_string) {
     strcpy(namestr, test_name_string->value->cstring);
     name_array = make_name_array(item_no, namestr);
@@ -66,6 +86,16 @@ void inbox_recieved_callback(DictionaryIterator *iter, void *context) {
       APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine item name is %s", name_array[i]);
     }
     destroy_name_array(name_array);
+  }
+
+  int *times;
+  Tuple *tuple_time_str = dict_find(iter, MESSAGE_KEY_Routine_Times);
+  if (tuple_time_str) {
+    strcpy(namestr, tuple_time_str->value->cstring);
+    times = make_num_array(item_no, namestr);
+    for (int i = 0; i < item_no; i++) {
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine item name is %d", times[i]);
+    }
   }
 }
 
@@ -91,7 +121,7 @@ void outbox_failed_callback(DictionaryIterator *iter,
 void appmessage_setup() {
 
   // Largest expected inbox and outbox message sizes
-  const uint32_t inbox_size = 64;
+  const uint32_t inbox_size = 256;
   const uint32_t outbox_size = 256;
 
   // Open AppMessage

@@ -13,11 +13,14 @@
       "Sequence",
       "Operation",
       "Routine_Id",
-      "Routine_Name",
+      "Routine_Title",
+      "Routine_Times",
+      "Routine_Names",
       "Routine_Item_No",
       "Wakeup_On_Start",
       "Goal_Time",
-      "Weekdays"
+      "Weekdays",
+      "Final"
     ],
     "projectType": "native",
     "resources": {

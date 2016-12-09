@@ -10,16 +10,21 @@
 #include "main_window.h"
 #include "main.h"
 
+void init_structs() {
+  /* Intitialize structs */
+}
 
-/* Setup after first run. */
- void first_setup() {
+
+/* Setup of a routine, with data from app_comm. */
+ void routine_setup(int id, int len, char ** name_array, int * time_array) {
+
   int sum_time = 0; // Routine length
 
-  // Construct the items and write to memory //
-  for (int i = 0; i<routine.num_of_items; i++) {
-    sum_time += item_times[i];
-    strncpy(current_item.name, item_names[i], sizeof(current_item.name));
-    // Copy minutes and seconds. Should be converted to seconds only //
+  /* Construct the items and write to memory */
+  for (int i = 0; i<len; i++) {
+    sum_time += time_array[i];
+    strncpy(current_item.name, name_array[i], sizeof(current_item.name));
+    /* Copy minutes and seconds. Should be converted to seconds only */
     current_item.time = item_times[i];
     current_item.remaining_time = current_item.time;
     write_curr_item(routine.item_keys[i]);
@@ -31,13 +36,16 @@
   /* If there are settings in memory, load them. If there aren't,
   it's the first run. Run setup, write it to memory then load. */
   if (persist_exists(SETTINGS_KEY)) {
+    init_structs();
     load_state();
+
     if (app_settings.current_routine != -1 && routine.current_item == -1) {
       load_curr_item(routine.item_keys[0]);
     } else if (app_settings.current_routine != -1) {
       load_curr_item(routine.item_keys[routine.current_item]);
     }
   } else {
+    init_structs();
     first_setup();
     save_state();
   }
@@ -45,14 +53,14 @@
   /* Comms handling */
   appmessage_setup();
 
-  // Wakueup handling //
+  /* Wakueup handling */
 
   if (launch_reason() == APP_LAUNCH_WAKEUP) {
-    // The app was started by a wakeup event.
+    /* The app was started by a wakeup event. */
     WakeupId id = 0;
     int32_t reason = 0;
 
-    // Get details and handle the event appropriately
+    /* Get details and handle the event appropriately. */
     wakeup_get_launch_event(&id, &reason);
     wakeup_handler(id, reason);
   }
@@ -84,9 +92,9 @@
 }
 
 
-// Call this when the ritual ends //
+/* Call this when the ritual ends */
  void reset() {
-  // Change current_item carry_time, remaining_times to default
+  /* Change current_item carry_time, remaining_times to default */
   for (int i=0; i<routine.num_of_items; i++) {
     load_curr_item(routine.item_keys[i]);
     current_item.remaining_time = current_item.time;
