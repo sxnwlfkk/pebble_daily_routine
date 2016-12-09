@@ -191,7 +191,7 @@ void ritual_item_window_unload(Window *window) {
 
 void ritual_item_window_disappear(Window *window) {
   save_state();
-  write_curr_item(routine.item_keys[routine.current_item]);
+  save_curr_item(routine.item_keys[routine.current_item]);
 }
 
 

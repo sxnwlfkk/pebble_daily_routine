@@ -39,7 +39,8 @@ static void timer_handler(void *data) {
 void next_ritual_window_show(time_t next_time){
   next_ritual_time = next_time;
 
-  int start_time = routine.goal_time[0]*60*60 + routine.goal_time[1]*60 - routine.routine_length;
+  int start_time = menu_data.start_times[app_settings.current_routine];
+  // int start_time = routine.goal_time[0]*60*60 + routine.goal_time[1]*60 - routine.routine_length;
   int hours =  start_time/60/60;
   int minutes = (start_time/60)%60;
   if (minutes < 10) {

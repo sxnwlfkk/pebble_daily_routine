@@ -3,34 +3,36 @@
 
 
 #define ITEM_PER_ROUTINE 30
+#define ROUTINE_MAX_NUMBER 10
 #define ONE_DAY 86400
 
-#define SETTINGS_KEY 310
-#define WK_KEY1 311
-#define WK_KEY2 312
-#define WK_KEY3 313
-#define WK_KEY4 314
-#define WK_KEY5 315
-#define WK_KEY6 316
-#define WK_KEY7 317
-#define WK_KEY8 318
+#define SETTINGS_KEY 910
+#define WK_KEY1 911
+#define WK_KEY2 912
+#define WK_KEY3 913
+#define WK_KEY4 914
+#define WK_KEY5 915
+#define WK_KEY6 916
+#define WK_KEY7 917
+#define WK_KEY8 918
+#define MENU_KEY 919
 
 typedef struct MenuData {
-  char routine_name[20];
-  int routine_length;
-  int start_time;
+  char routine_names[ROUTINE_MAX_NUMBER][20];
+  int routine_length[ROUTINE_MAX_NUMBER];
+  int start_times[ROUTINE_MAX_NUMBER];
 } MenuData;
 
 typedef struct AppSettings {
   int no_of_rutines;
   int set_routines[10];
-  MenuData data_list[10];
   int current_routine;
+  uint16_t version;
 } AppSettings;
 
 typedef struct Item {
   char name[20];
-  int time;
+  int z_time;
   int remaining_time;
   bool pre_carry_stage;
   time_t timer_timestamp;
@@ -38,7 +40,7 @@ typedef struct Item {
 } Item;
 
 typedef struct Routine {
-  char routine_name[20];
+  char name[20];
   int num_of_items;
   int item_keys[30];
   int weekdays[7];
@@ -67,8 +69,14 @@ void distribute_carry_loss();
 int calculate_first_carry();
 
 char make_into_time(int *first, int *second);
-void write_curr_item(int key);
+void save_menu_data();
+void load_menu_data();
+void save_curr_item(int key);
 void load_curr_item(int key);
+void save_routine(int key);
+void load_routine(int key);
+void save_app_settings();
+void load_app_settings();
 void save_state();
 void load_state();
 

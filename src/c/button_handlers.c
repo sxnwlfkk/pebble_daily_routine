@@ -21,7 +21,7 @@ static void start_window_back_button_handler(ClickRecognizerRef recognizer, void
 static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *context) {
   // The zeroing is because the bug, which makes -14342231 from zero upon
   // restart. //
-  current_item.remaining_time = current_item.time;
+  current_item.remaining_time = current_item.z_time;
   routine.carry_time = 0;
   routine.finish_time = time(NULL) + routine.routine_length;
 
@@ -39,7 +39,7 @@ static void start_window_up_click_handler(ClickRecognizerRef recognizer, void *c
 
 static void start_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
   // This is also because the bug. //
-  current_item.remaining_time = current_item.time;
+  current_item.remaining_time = current_item.z_time;
   // routine.carry_time = 0;
 
   routine.carry_time = calculate_first_carry();
@@ -108,7 +108,7 @@ static void item_window_up_click_handler(ClickRecognizerRef recognizer, void *co
   if (routine.current_item <= 0)
     return;
 
-  write_curr_item(routine.item_keys[routine.current_item]);
+  save_curr_item(routine.item_keys[routine.current_item]);
 
   routine.current_item -= 1;
 
@@ -123,7 +123,7 @@ static void item_window_up_click_handler(ClickRecognizerRef recognizer, void *co
 static void item_window_down_click_handler(ClickRecognizerRef recognizer, void *context) {
   // The bug again. //
   if (current_item.remaining_time < 0 && routine.current_item == -1) {
-    current_item.remaining_time = current_item.time;
+    current_item.remaining_time = current_item.z_time;
   }
   if (routine.carry_time < 0 && routine.current_item == -1) {
     routine.carry_time = 0;
@@ -137,7 +137,7 @@ static void item_window_down_click_handler(ClickRecognizerRef recognizer, void *
     current_item.remaining_time = 0;
   }
 
-  write_curr_item(routine.item_keys[routine.current_item]);
+  save_curr_item(routine.item_keys[routine.current_item]);
 
   if (routine.carry_time < 0)
     distribute_carry_loss();

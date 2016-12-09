@@ -11,13 +11,6 @@
 #include "main.h"
 
 
-/* Settings */
-AppSettings app_settings;
-Routine routine;
-Item current_item;
-MenuData menu_data;
-
-
 // Logging //
 
 void log_formatted_time(time_t time_utc) {
@@ -44,7 +37,15 @@ void log_settings_dump() {
 
 // Functions //
 
- void write_curr_item(int key) {
+void save_menu_data() {
+  persist_write_data(MENU_KEY, &menu_data, sizeof(menu_data));
+}
+
+void load_menu_data() {
+  persist_read_data(MENU_KEY, &menu_data, sizeof(menu_data));;
+}
+
+ void save_curr_item(int key) {
   persist_write_data(key, &current_item, sizeof(current_item));
 }
 
@@ -52,27 +53,38 @@ void log_settings_dump() {
   persist_read_data(key, &current_item, sizeof(current_item));
 }
 
-void load_routine(int key) {
-  persist_read_data(key, &routine, sizeof(routine));
-}
-
 void save_routine(int key) {
   persist_write_data(key, &routine, sizeof(routine));
 }
 
- void save_state() {
+void load_routine(int key) {
+  persist_read_data(key, &routine, sizeof(routine));
+}
+
+void save_app_settings() {
   persist_write_data(SETTINGS_KEY, &app_settings, sizeof(app_settings));
+}
+
+void load_app_settings() {
+  persist_read_data(SETTINGS_KEY, &app_settings, sizeof(app_settings));
+}
+
+void save_state() {
+  save_app_settings();
   if (app_settings.current_routine != -1) {
     save_routine(app_settings.current_routine);
     if (routine.current_item != -1)
-      write_curr_item(routine.item_keys[routine.current_item]);
+      save_curr_item(routine.item_keys[routine.current_item]);
   }
 }
 
- void load_state() {
-  persist_read_data(SETTINGS_KEY, &app_settings, sizeof(app_settings));
+void load_state() {
+  load_app_settings();
   if (app_settings.current_routine != -1) {
     load_routine(app_settings.current_routine);
+    if (routine.current_item != -1) {
+      load_curr_item(routine.item_keys[routine.current_item]);
+    }
   }
 }
 
@@ -105,7 +117,7 @@ void distribute_carry_loss() {
       load_curr_item(routine.item_keys[i]);
       proportional_loss = (int) ((float)routine.carry_time * ((float) current_item.remaining_time / (float)total_remaining_time));
       current_item.remaining_time += proportional_loss; // Should be always negative
-      write_curr_item(routine.item_keys[i]);
+      save_curr_item(routine.item_keys[i]);
     }
   load_curr_item(routine.item_keys[routine.current_item]);
   }

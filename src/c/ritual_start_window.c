@@ -13,8 +13,8 @@ char first_item_time_string[] = "00:00";
 void ritual_start_window_show() {
   strncpy(first_item_name, current_item.name, sizeof(first_item_name));
 
-  int minutes = current_item.time / 60;
-  int seconds = current_item.time % 60;
+  int minutes = current_item.z_time / 60;
+  int seconds = current_item.z_time % 60;
 
   if (seconds < 10) {
     snprintf(first_item_time_string, sizeof(first_item_time_string), "%d:0%d", minutes, seconds);
