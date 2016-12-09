@@ -9,4 +9,4 @@ void reset();
 
  void routine_setup(int id, int len, char * routine_name,
                     char ** name_array, int * time_array,
-                    bool wakeup, int * goal);
+                    int wakeup, int * goal);

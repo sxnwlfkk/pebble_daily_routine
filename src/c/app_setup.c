@@ -18,7 +18,7 @@ void generate_menu_data() {
 /* Setup of a routine, with data from app_comm. */
  void routine_setup(int id, int len, char * routine_name,
                     char ** name_array, int * time_array,
-                    bool wakeup, int * goal) {
+                    int wakeup, int * goal) {
 
   int sum_time = 0; // Routine length
   int zero_key = id * ITEM_PER_ROUTINE + ROUTINE_MAX_NUMBER;
@@ -36,7 +36,7 @@ void generate_menu_data() {
   routine.num_of_items = len;
   routine.routine_length = sum_time;
   routine.carry_time = 0;
-  routine.wakeup_on_start = wakeup;
+  routine.wakeup_on_start = (wakeup != 0) ? true : false;
   routine.current_item = -1;
   routine.ended = false;
   routine.goal_time[0] = *goal;
@@ -106,7 +106,6 @@ void first_setup() {
 
  void deinit(void){
   save_state();
-  save_curr_item(routine.item_keys[routine.current_item]);
   wu_check_next_start_time();
 
   /* Close windows if opened. */

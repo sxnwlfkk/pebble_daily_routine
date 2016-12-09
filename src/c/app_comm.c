@@ -1,6 +1,6 @@
 #include <pebble.h>
-
-bool s_js_ready;
+#include "app_setup.h"
+#include "main.h"
 
 char ** make_name_array(int len, char *namestr) {
   char **new_array;
@@ -33,7 +33,6 @@ int * make_num_array(int len, char *timestr) {
 
   int j = 0;
   for (int i = 0; i < len; i++) {
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Trying to copy to new arrays.");
     char curr_time[10] = "1";
     int k = 0;
     while ((curr_time[k] = timestr[j]) != '|' && curr_time[k] != '\0') {
@@ -50,12 +49,123 @@ int * make_num_array(int len, char *timestr) {
 
 void destroy_name_array(char ** namearray) {
   free(namearray);
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Memory freed.");
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Memory freed.");
 }
 
-void destroy_array(char * array) {
+void destroy_array(int * array) {
   free(array);
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Memory freed.");
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Memory freed.");
+}
+
+uint16_t inbox_new_routine(DictionaryIterator *iter) {
+
+  /* Get routine id */
+  int id = 0;
+  Tuple *tuple_int_id = dict_find(iter, MESSAGE_KEY_Routine_Id);
+  if (tuple_int_id) {
+    id = tuple_int_id->value->int32;
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine id is %d", id);
+  } else {
+    return 0;
+  }
+
+  /* Get routine name */
+  char *routine_name;
+  Tuple *tuple_str_name = dict_find(iter, MESSAGE_KEY_Routine_Title);
+  if (tuple_str_name) {
+    routine_name = tuple_str_name->value->cstring;
+  } else {
+    return 0;
+  }
+
+  /* Get item number */
+  int item_no = 0;
+  Tuple *test_int_item_no = dict_find(iter, MESSAGE_KEY_Routine_Item_No);
+  if (test_int_item_no) {
+    item_no = test_int_item_no->value->int32;
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine item number is %d", item_no);
+  } else {
+    return 0;
+  }
+
+  /* Get name array */
+  char namestr[256];
+  char ** name_array;
+  Tuple *test_name_string = dict_find(iter, MESSAGE_KEY_Routine_Names);
+  if (test_name_string) {
+    strcpy(namestr, test_name_string->value->cstring);
+    name_array = make_name_array(item_no, namestr);
+  } else {
+    return 0;
+  }
+
+  /* Get time array */
+  int *times;
+  Tuple *tuple_time_str = dict_find(iter, MESSAGE_KEY_Routine_Times);
+  if (tuple_time_str) {
+    strcpy(namestr, tuple_time_str->value->cstring);
+    times = make_num_array(item_no, namestr);
+  } else {
+    return 0;
+  }
+
+  /* Get goal time */
+  int goal_time[2];
+  Tuple *tuple_goal_int = dict_find(iter, MESSAGE_KEY_Goal_1);
+  if (tuple_goal_int) {
+    goal_time[0] = tuple_goal_int->value->int32;
+  } else {
+    return 0;
+  }
+  tuple_goal_int = dict_find(iter, MESSAGE_KEY_Goal_2);
+  if (tuple_goal_int) {
+    goal_time[1] = tuple_goal_int->value->int32;
+  } else {
+    return 0;
+  }
+
+  /* Get wakeup int */
+  int wakeup = 0;
+  Tuple *tuple_wakeup_int = dict_find(iter, MESSAGE_KEY_Wakeup_On_Start);
+  if (tuple_wakeup_int) {
+    wakeup = tuple_wakeup_int->value->int32;
+  } else {
+    return 0;
+  }
+
+  save_state();
+  routine_setup(id, item_no, routine_name, name_array, times, wakeup, goal_time);
+  load_state();
+
+  app_settings.current_routine = 0;
+
+  destroy_array(times);
+  destroy_name_array(name_array);
+
+  return 1;
+
+}
+
+void send_version_to_phone() {
+  // Declare the dictionary's iterator
+  DictionaryIterator *out_iter;
+
+  // Prepare the outbox buffer for this message
+  AppMessageResult result = app_message_outbox_begin(&out_iter);
+  if(result == APP_MSG_OK) {
+    int value = app_settings.version;
+    dict_write_int(out_iter, MESSAGE_KEY_Version, &value, sizeof(int), true);
+
+    // Send this message
+    result = app_message_outbox_send();
+    if(result != APP_MSG_OK) {
+      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Error sending the outbox: %d", (int)result);
+    }
+  } else {
+    // The outbox cannot be used right now
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Error preparing the outbox: %d", (int)result);
+  }
+
 }
 
 void inbox_recieved_callback(DictionaryIterator *iter, void *context) {
@@ -65,38 +175,14 @@ void inbox_recieved_callback(DictionaryIterator *iter, void *context) {
   Tuple *ready_tuple = dict_find(iter, MESSAGE_KEY_JSReady);
   if(ready_tuple) {
     /* PebbleKit JS is ready! Safe to send messages */
-    s_js_ready = true;
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "JSReady set to true.");
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "JSReady set to true. Sending version: %d", app_settings.version);
+    send_version_to_phone();
+  } else {
+    app_settings.version += inbox_new_routine(iter);
+    send_version_to_phone();
   }
 
-  int item_no = 0;
-  Tuple *test_int_item_no = dict_find(iter, MESSAGE_KEY_Routine_Item_No);
-  if (test_int_item_no) {
-    item_no = test_int_item_no->value->int32;
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine item number is %d", item_no);
-  }
 
-  char namestr[256];
-  char ** name_array;
-  Tuple *test_name_string = dict_find(iter, MESSAGE_KEY_Routine_Names);
-  if (test_name_string) {
-    strcpy(namestr, test_name_string->value->cstring);
-    name_array = make_name_array(item_no, namestr);
-    for (int i = 0; i < item_no; i++) {
-      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine item name is %s", name_array[i]);
-    }
-    destroy_name_array(name_array);
-  }
-
-  int *times;
-  Tuple *tuple_time_str = dict_find(iter, MESSAGE_KEY_Routine_Times);
-  if (tuple_time_str) {
-    strcpy(namestr, tuple_time_str->value->cstring);
-    times = make_num_array(item_no, namestr);
-    for (int i = 0; i < item_no; i++) {
-      APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine item name is %d", times[i]);
-    }
-  }
 }
 
 
@@ -122,7 +208,7 @@ void appmessage_setup() {
 
   // Largest expected inbox and outbox message sizes
   const uint32_t inbox_size = 256;
-  const uint32_t outbox_size = 256;
+  const uint32_t outbox_size = 64;
 
   // Open AppMessage
   app_message_open(inbox_size, outbox_size);

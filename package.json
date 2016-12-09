@@ -18,7 +18,9 @@
       "Routine_Names",
       "Routine_Item_No",
       "Wakeup_On_Start",
-      "Goal_Time",
+      "Goal_1",
+      "Goal_2",
+      "Version",
       "Weekdays",
       "Final"
     ],
