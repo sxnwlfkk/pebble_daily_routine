@@ -33,8 +33,14 @@ var routine_dict_2 = {
 }
 
 var queue = {
-  1: routine_dict_1,
-  2: routine_dict_2
+  1: {
+    "dict": routine_dict_1,
+    "op": 1
+  },
+  2: {
+    "dict": routine_dict_2,
+    "op": 1
+  }
 }
 
 // Signal ready to the watch
@@ -55,7 +61,7 @@ Pebble.addEventListener('appmessage', function(e) {
     watch_version = dict['Version'];
     if (watch_version != phone_version) {
         // Sending test dict
-        Pebble.sendAppMessage(queue[watch_version+1]);
+        Pebble.sendAppMessage(queue[watch_version+1]["dict"]);
         console.log('Sent test dictionary.');
     }
   } else {
