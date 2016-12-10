@@ -189,6 +189,7 @@ void inbox_recieved_callback(DictionaryIterator *iter, void *context) {
 void inbox_dropped_callback(AppMessageResult reason, void *context) {
   // A message was received, but had to be dropped
   APP_LOG(APP_LOG_LEVEL_ERROR, "Message dropped. Reason: %d", (int)reason);
+  send_version_to_phone();
 }
 
 
