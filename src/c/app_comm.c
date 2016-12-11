@@ -137,7 +137,7 @@ uint16_t inbox_new_routine(DictionaryIterator *iter) {
   routine_setup(id, item_no, routine_name, name_array, times, wakeup, goal_time);
   load_state();
 
-  app_settings.current_routine = 0;
+  app_settings.current_routine = -1;
 
   destroy_array(times);
   destroy_name_array(name_array);

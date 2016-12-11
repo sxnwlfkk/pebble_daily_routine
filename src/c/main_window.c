@@ -1,4 +1,4 @@
-#include "pebble.h"
+#include <pebble.h>
 #include "main.h"
 #include "main_window.h"
 
@@ -12,7 +12,7 @@ uint16_t menu_get_num_sections_callback(MenuLayer *menu_layer, void *data) {
 }
 
 uint16_t menu_get_num_rows_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
-  return 1;
+  return app_settings.no_of_rutines;
 }
 
 int16_t menu_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_index, void *data) {
@@ -20,11 +20,14 @@ int16_t menu_get_header_height_callback(MenuLayer *menu_layer, uint16_t section_
 }
 
 void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t section_index, void *data) {
-
+  menu_cell_basic_header_draw(ctx, cell_layer, "Routines");
 }
 
 void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
-
+  char snum[5] = "00000";
+  int id = app_settings.set_routines[cell_index->row];
+  snprintf(snum, sizeof(snum), "%d", menu_data.routine_length[id]);
+  menu_cell_basic_draw(ctx, cell_layer, menu_data.routine_names[id], snum, NULL);
 }
 
 void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
@@ -50,7 +53,7 @@ void setup_menu_layer(Window *window) {
 }
 
 void main_window_show(){
-
+  main_window_create();
   window_stack_push(main_window_get_window(), true);
 }
 

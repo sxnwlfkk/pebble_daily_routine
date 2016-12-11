@@ -145,7 +145,7 @@ uint16_t current_item_key() {
 }
 
  void open_starting_window() {
-  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Open starting window.");
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Opening starting window.");
 
   if (routine.ended) {
     // If routine ended //
@@ -154,6 +154,8 @@ uint16_t current_item_key() {
     ritual_end_window_show();
     routine.ended = false;
 
+  } else if (app_settings.current_routine == -1) {
+    main_window_show();
   } else if (routine.current_item == -1 && routine.wakeup_on_start) {
   // If routine is not in progress //
 

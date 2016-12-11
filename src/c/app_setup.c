@@ -43,7 +43,8 @@ void generate_menu_data() {
   routine.goal_time[1] = *(goal+1);
   routine.routine_length = sum_time;
 
-  app_settings.set_routines[app_settings.no_of_rutines += 1] = id;
+  app_settings.set_routines[app_settings.no_of_rutines] = id;
+  app_settings.no_of_rutines += 1;
 
   strncpy(menu_data.routine_names[id], routine_name, sizeof(menu_data.routine_names));
   menu_data.routine_length[id] = sum_time / 60;
