@@ -47,7 +47,7 @@ void generate_menu_data() {
   app_settings.no_of_rutines += 1;
 
   strncpy(menu_data.routine_names[id], routine_name, sizeof(menu_data.routine_names));
-  menu_data.routine_length[id] = sum_time / 60;
+  menu_data.routine_length[id] = sum_time;
   if (routine.wakeup_on_start) {
     menu_data.start_times[id] = routine.goal_time[0]*60*60 + routine.goal_time[1]*60 - routine.routine_length;
   } else {
@@ -56,6 +56,7 @@ void generate_menu_data() {
 
   save_routine(id);
   save_app_settings();
+  save_menu_data();
 }
 
 void init_structs() {

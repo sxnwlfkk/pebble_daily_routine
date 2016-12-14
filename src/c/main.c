@@ -32,6 +32,7 @@ void log_settings_dump() {
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "routine.current_item = %d", routine.current_item);
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "routine.current_item = %d", routine.current_item);
   APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "routine.routine_length = %d", routine.routine_length);
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "menu_data.routine_names[0] = %s", menu_data.routine_names[0]);
 }
 
 
@@ -71,6 +72,7 @@ void load_app_settings() {
 
 void save_state() {
   save_app_settings();
+  save_menu_data();
   if (app_settings.current_routine != -1) {
     save_routine(app_settings.current_routine);
     if (routine.current_item != -1)
@@ -80,6 +82,7 @@ void save_state() {
 
 void load_state() {
   load_app_settings();
+  load_menu_data();
   if (app_settings.current_routine != -1) {
     load_routine(app_settings.current_routine);
     if (routine.current_item != -1) {
