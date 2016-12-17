@@ -34,6 +34,10 @@ void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *c
 }
 
 void menu_select_callback(MenuLayer *menu_layer, MenuIndex *cell_index, void *data) {
+  int key = app_settings.set_routines[cell_index->row];
+  load_routine(key);
+  app_settings.current_routine = key;
+  open_starting_window();
 
 }
 

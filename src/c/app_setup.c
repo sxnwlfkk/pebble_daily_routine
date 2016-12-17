@@ -138,4 +138,8 @@ void first_setup() {
   }
   routine.carry_time = 0;
   routine.current_item = -1;
+  save_routine(app_settings.current_routine);
+  app_settings.current_routine = -1;
+  save_app_settings();
+  open_starting_window();
 }
