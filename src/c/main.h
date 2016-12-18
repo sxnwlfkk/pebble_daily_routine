@@ -27,7 +27,7 @@ typedef struct AppSettings {
   int no_of_rutines;
   int set_routines[10];
   int current_routine;
-  uint16_t version;
+  int version;
 } AppSettings;
 
 typedef struct Item {

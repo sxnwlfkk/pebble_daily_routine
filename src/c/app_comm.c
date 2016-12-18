@@ -27,6 +27,7 @@ char ** make_name_array(int len, char *namestr) {
 
 int * make_num_array(int len, char *timestr) {
   int *new_times;
+  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Time string is: %s", timestr);
   if ((new_times = malloc(len * sizeof(int))) == NULL) {
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Malloc failed at make_time_array, **new_times.");
   }
@@ -43,6 +44,8 @@ int * make_num_array(int len, char *timestr) {
     j++;
 
     new_times[i] = atoi(curr_time);
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "%d. time is: %d", i, new_times[i]);
+
   }
   return new_times;
 }

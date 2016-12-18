@@ -10,6 +10,7 @@
 #include "main_window.h"
 #include "main.h"
 
+
 /* Generate new men data from app_settings and routines. */
 void generate_menu_data() {
 
@@ -25,9 +26,11 @@ void generate_menu_data() {
 
   /* Construct the items and write to memory */
   for (int i = 0; i<len; i++) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "%d. time in array: %d", i, time_array[i]);
+
     strncpy(current_item.name, name_array[i], sizeof(current_item.name));
     current_item.z_time = current_item.remaining_time = time_array[i];
-    sum_time += current_item.z_time;
+    sum_time += time_array[i];
     routine.item_keys[i] = zero_key + i;
     save_curr_item(routine.item_keys[i]);
   }
@@ -41,13 +44,16 @@ void generate_menu_data() {
   routine.ended = false;
   routine.goal_time[0] = *goal;
   routine.goal_time[1] = *(goal+1);
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Sum time is %d", sum_time);
   routine.routine_length = sum_time;
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine length is %d", routine.routine_length);
 
   app_settings.set_routines[app_settings.no_of_rutines] = id;
   app_settings.no_of_rutines += 1;
 
   strncpy(menu_data.routine_names[id], routine_name, sizeof(menu_data.routine_names));
   menu_data.routine_length[id] = sum_time;
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Sum time from menu data is %d", menu_data.routine_length[id]);
   if (routine.wakeup_on_start) {
     menu_data.start_times[id] = routine.goal_time[0]*60*60 + routine.goal_time[1]*60 - routine.routine_length;
   } else {
@@ -69,7 +75,7 @@ void init_structs() {
 void first_setup() {
   app_settings.no_of_rutines = 0;
   app_settings.current_routine = -1;
-  app_settings.version = 0;
+  app_settings.version = -1;
 }
 
  void init(void){
@@ -86,7 +92,13 @@ void first_setup() {
   }
 
   /* Comms handling */
-  appmessage_setup();
+  /* Messing with the version os for debugging purposes */
+  if (app_settings.version != -1) {
+    appmessage_setup();
+  } else {
+    app_settings.version = 0;
+  }
+
 
   /* Wakueup handling */
 
