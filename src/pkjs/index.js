@@ -5,7 +5,7 @@ var clayConfig = require('./config.json');
 var clay = new Clay(clayConfig);
 
 // Version //
-var phone_version = 2;
+var phone_version = 3;
 var watch_version = 0;
 
 var routine_dict_1 = {
@@ -32,6 +32,18 @@ var routine_dict_2 = {
   'Goal_2': 30,
 }
 
+var routine_dict_3 = {
+  'Operation': 1,
+  'Routine_Id': 2,
+  'Routine_Title': "Test Routine 3",
+  'Routine_Item_No': 5,
+  'Routine_Names': "First|Second|Third|Fourth|Fifth",
+  'Routine_Times': "60|120|360|20|45",
+  'Wakeup_On_Start': 1,
+  'Goal_1': 7,
+  'Goal_2': 30,
+}
+
 var queue = {
   1: {
     "dict": routine_dict_1,
@@ -39,6 +51,10 @@ var queue = {
   },
   2: {
     "dict": routine_dict_2,
+    "op": 1
+  },
+  3: {
+    "dict": routine_dict_3,
     "op": 1
   }
 }

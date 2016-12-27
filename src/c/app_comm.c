@@ -13,7 +13,6 @@ char ** make_name_array(int len, char *namestr) {
     if ((new_array[i] = malloc(30 * sizeof(char))) == NULL) {
       APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Malloc failed at make_name_array, **new_array[%d].", i);
     }
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Trying to copy to new arrays.");
     int k = 0;
     while ((new_array[i][k] = namestr[j]) != '|' && new_array[i][k] != '\0') {
       j++;
@@ -44,20 +43,16 @@ int * make_num_array(int len, char *timestr) {
     j++;
 
     new_times[i] = atoi(curr_time);
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "%d. time is: %d", i, new_times[i]);
-
   }
   return new_times;
 }
 
 void destroy_name_array(char ** namearray) {
   free(namearray);
-  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Memory freed.");
 }
 
 void destroy_array(int * array) {
   free(array);
-  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Memory freed.");
 }
 
 uint16_t inbox_new_routine(DictionaryIterator *iter) {
@@ -139,14 +134,12 @@ uint16_t inbox_new_routine(DictionaryIterator *iter) {
   save_state();
   routine_setup(id, item_no, routine_name, name_array, times, wakeup, goal_time);
   load_state();
-
   app_settings.current_routine = -1;
 
   destroy_array(times);
   destroy_name_array(name_array);
 
   return 1;
-
 }
 
 void send_version_to_phone() {

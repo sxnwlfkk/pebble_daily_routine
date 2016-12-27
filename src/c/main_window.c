@@ -27,10 +27,8 @@ void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *c
   char snum[5] = "00000";
   char name[30];
   int id = app_settings.set_routines[cell_index->row];
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine length from menu draw callback is %d", menu_data.routine_length[id]);
   snprintf(snum, sizeof(snum), "%d", menu_data.routine_length[id]);
   snprintf(name, sizeof(name), "%s", menu_data.routine_names[id]);
-  APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "%d row: %s: %s.", cell_index->row, name, snum);
   menu_cell_basic_draw(ctx, cell_layer, name, snum, NULL);
 }
 

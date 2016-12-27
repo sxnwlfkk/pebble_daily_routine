@@ -44,25 +44,23 @@ void generate_menu_data() {
   routine.ended = false;
   routine.goal_time[0] = *goal;
   routine.goal_time[1] = *(goal+1);
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Sum time is %d", sum_time);
   routine.routine_length = sum_time;
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine length is %d", routine.routine_length);
 
   app_settings.set_routines[app_settings.no_of_rutines] = id;
   app_settings.no_of_rutines += 1;
 
-  strncpy(menu_data.routine_names[id], routine_name, sizeof(menu_data.routine_names));
   menu_data.routine_length[id] = sum_time;
-    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Sum time from menu data is %d", menu_data.routine_length[id]);
+  strncpy(menu_data.routine_names[id], routine_name, sizeof(menu_data.routine_names[id]));
+
   if (routine.wakeup_on_start) {
     menu_data.start_times[id] = routine.goal_time[0]*60*60 + routine.goal_time[1]*60 - routine.routine_length;
   } else {
     menu_data.start_times[id] = 0;
   }
 
+  save_menu_data();
   save_routine(id);
   save_app_settings();
-  save_menu_data();
 }
 
 void init_structs() {
