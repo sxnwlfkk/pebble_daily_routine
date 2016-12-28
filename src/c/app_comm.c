@@ -64,6 +64,7 @@ uint16_t inbox_new_routine(DictionaryIterator *iter) {
     id = tuple_int_id->value->int32;
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine id is %d", id);
   } else {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine id failed");
     return 0;
   }
 
@@ -72,7 +73,9 @@ uint16_t inbox_new_routine(DictionaryIterator *iter) {
   Tuple *tuple_str_name = dict_find(iter, MESSAGE_KEY_Routine_Title);
   if (tuple_str_name) {
     routine_name = tuple_str_name->value->cstring;
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine name is %s", routine_name);
   } else {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine name failed");
     return 0;
   }
 
@@ -83,6 +86,7 @@ uint16_t inbox_new_routine(DictionaryIterator *iter) {
     item_no = test_int_item_no->value->int32;
     APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine item number is %d", item_no);
   } else {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine item number failed");
     return 0;
   }
 
@@ -93,7 +97,9 @@ uint16_t inbox_new_routine(DictionaryIterator *iter) {
   if (test_name_string) {
     strcpy(namestr, test_name_string->value->cstring);
     name_array = make_name_array(item_no, namestr);
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Name string is %s", namestr);
   } else {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Somehow name generation failed.");
     return 0;
   }
 
@@ -104,29 +110,34 @@ uint16_t inbox_new_routine(DictionaryIterator *iter) {
     strcpy(namestr, tuple_time_str->value->cstring);
     times = make_num_array(item_no, namestr);
   } else {
-    return 0;
-  }
-
-  /* Get goal time */
-  int goal_time[2];
-  Tuple *tuple_goal_int = dict_find(iter, MESSAGE_KEY_Goal_1);
-  if (tuple_goal_int) {
-    goal_time[0] = tuple_goal_int->value->int32;
-  } else {
-    return 0;
-  }
-  tuple_goal_int = dict_find(iter, MESSAGE_KEY_Goal_2);
-  if (tuple_goal_int) {
-    goal_time[1] = tuple_goal_int->value->int32;
-  } else {
+    APP_LOG(APP_LOG_LEVEL_DEBUG_VERBOSE, "Routine time string failed");
     return 0;
   }
 
   /* Get wakeup int */
   int wakeup = 0;
+  int goal_time[2];
   Tuple *tuple_wakeup_int = dict_find(iter, MESSAGE_KEY_Wakeup_On_Start);
   if (tuple_wakeup_int) {
     wakeup = tuple_wakeup_int->value->int32;
+    if (wakeup) {
+      /* Get goal time */
+      Tuple *tuple_goal_int = dict_find(iter, MESSAGE_KEY_Goal_1);
+      if (tuple_goal_int) {
+        goal_time[0] = tuple_goal_int->value->int32;
+      } else {
+        return 0;
+      }
+      tuple_goal_int = dict_find(iter, MESSAGE_KEY_Goal_2);
+      if (tuple_goal_int) {
+        goal_time[1] = tuple_goal_int->value->int32;
+      } else {
+        return 0;
+      }
+    } else {
+      goal_time[0] = 0;
+      goal_time[1] = 0;
+    }
   } else {
     return 0;
   }
@@ -204,7 +215,7 @@ void outbox_failed_callback(DictionaryIterator *iter,
 void appmessage_setup() {
 
   // Largest expected inbox and outbox message sizes
-  const uint32_t inbox_size = 256;
+  const uint32_t inbox_size = 1024;
   const uint32_t outbox_size = 64;
 
   // Open AppMessage

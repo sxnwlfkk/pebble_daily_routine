@@ -24,10 +24,10 @@ void menu_draw_header_callback(GContext* ctx, const Layer *cell_layer, uint16_t 
 }
 
 void menu_draw_row_callback(GContext* ctx, const Layer *cell_layer, MenuIndex *cell_index, void *data) {
-  char snum[5] = "00000";
+  char snum[10] = "0000000000";
   char name[30];
   int id = app_settings.set_routines[cell_index->row];
-  snprintf(snum, sizeof(snum), "%d", menu_data.routine_length[id]);
+  snprintf(snum, sizeof(snum), "%dm : %ds", menu_data.routine_length[id]/60, menu_data.routine_length[id]%60);
   snprintf(name, sizeof(name), "%s", menu_data.routine_names[id]);
   menu_cell_basic_draw(ctx, cell_layer, name, snum, NULL);
 }
